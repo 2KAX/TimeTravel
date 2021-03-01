@@ -9,7 +9,7 @@ public class managedissolve : MonoBehaviour
 
     bool apparait = false;
 
-    bool isfirsttouch = false;
+    public static bool isfirsttouch = false;
 
     [SerializeField]
     private GameObject effectObject;
@@ -34,9 +34,9 @@ public class managedissolve : MonoBehaviour
     void Start()
     {
         rend = GetComponent<Renderer>();
-        rend.material.SetFloat("_DisScale", r);
+        //rend.material.SetFloat("_DisScale", r);
 
-        
+ 
 
     }
 
@@ -44,13 +44,13 @@ public class managedissolve : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.D))
+/*        if (Input.GetKeyDown(KeyCode.D))
         {
             isfirsttouch = true;
-            var instantiateEffect = GameObject.Instantiate(effectObject, transform.position + new Vector3(0f,offset, 0f), Quaternion.identity) as GameObject;
-            //Destroy(instantiateEffect, deleteTime);
+           //var instantiateEffect = GameObject.Instantiate(effectObject, transform.position + new Vector3(0f, offset, 0f), Quaternion.identity) as GameObject;
+           //Destroy(instantiateEffect, deleteTime);
         }
-            
+  */          
 
 
         if (r > 0 && !apparait && isfirsttouch)
@@ -74,4 +74,12 @@ public class managedissolve : MonoBehaviour
         rend.material.SetFloat("_DisScale",r);
     }
  
+    public void createeffect()
+    {
+        var instantiateEffect = GameObject.Instantiate(effectObject, transform.position + new Vector3(0f, offset, 0f), Quaternion.identity) as GameObject;
+    }
+    static managedissolve()
+    {
+        managedissolve.isfirsttouch = false;
+    } 
 }
