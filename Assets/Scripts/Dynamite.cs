@@ -12,8 +12,15 @@ public class Dynamite : MonoBehaviour
     private bool fuseOn = false; // 2 - Si l'effect Particule est activé
     private Vector3 spawnLocation; // 2 - Le lieu de l'apparition de la dynamite
 
-    private void Start()
+	private AudioSource firefuse;//3.audio fire fuse
+	private AudioSource explosion; // 3. audio explosion
+
+
+	private void Start()
 	{
+		AudioSource[] audioSources = GetComponents<AudioSource>();
+		firefuse =  audioSources[0];
+		explosion = audioSources[1];
 		spawnLocation = transform.position;
 		Invoke("Grab", 2f);
 	}
@@ -26,6 +33,9 @@ public class Dynamite : MonoBehaviour
 	public void Grab()
     {
 		fuseEffect.Play();
+		//3.active audio lors du saisi
+		firefuse.enabled = true;
+		
 		fuseOn = true;
 	}
 
@@ -34,7 +44,8 @@ public class Dynamite : MonoBehaviour
 		// 2 - Si collision avec le bon objet
 		if (other.gameObject.CompareTag(explodeOnTag))
 		{
-            // 2 - Ça explose
+			
+			// 2 - Ça explose
 			Explode();
             // 2 - On récupère la composante Fracturable du parent de l'objet qui collisionne
 			Fracturable fracturable = other.GetComponent<Fracturable>();
@@ -51,8 +62,15 @@ public class Dynamite : MonoBehaviour
 	{
         // 2 - Fonction crée l'explosion
         Debug.Log("BOOM !");
-        // 2 - Crée l'effet d'explosion
-        GameObject exp = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+		// 3.desactive audio lors de l'explosion
+		firefuse.enabled = false;
+		//3. lance audio explosion une fois
+		explosion.enabled = true;
+		explosion.PlayOneShot(explosion.clip);
+
+
+		// 2 - Crée l'effet d'explosion
+		GameObject exp = Instantiate(explosionEffect, transform.position, Quaternion.identity);
         // 2 - On enlève cet effet au bout de 3s
         Destroy(exp, 3);
         // 2 - On respawn la dynamite
