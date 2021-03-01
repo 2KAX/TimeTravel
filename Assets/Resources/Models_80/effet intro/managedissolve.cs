@@ -12,6 +12,11 @@ public class managedissolve : MonoBehaviour
     bool isfirsttouch = false;
 
     [SerializeField]
+    private GameObject effectObject;
+    [SerializeField]
+    private float offset = 0f;
+
+    [SerializeField]
     private messagemanager messageScript;
 
     //　表示させるメッセージ
@@ -40,7 +45,12 @@ public class managedissolve : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.D))
+        {
             isfirsttouch = true;
+            var instantiateEffect = GameObject.Instantiate(effectObject, transform.position + new Vector3(0f,offset, 0f), Quaternion.identity) as GameObject;
+            //Destroy(instantiateEffect, deleteTime);
+        }
+            
 
 
         if (r > 0 && !apparait && isfirsttouch)

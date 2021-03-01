@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1001 &204846965
 PrefabInstance:
@@ -180,7 +182,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2131278a23bbceb4592b0a64bab52987,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.4
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2131278a23bbceb4592b0a64bab52987,
         type: 3}
@@ -252,6 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 100006, guid: bcf46e46336114145b09deb1db11d480, type: 3}
+  offset: 12
   messageScript: {fileID: 371070606}
 --- !u!1 &371070600
 GameObject:
@@ -446,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453602955}
   m_LocalRotation: {x: -0, y: 0.9995983, z: -0, w: -0.028343044}
-  m_LocalPosition: {x: 2.8, y: 11.9, z: 31}
+  m_LocalPosition: {x: -0.5, y: 11.9, z: 23.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -544,6 +548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &654765359
 GameObject:
@@ -641,6 +647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &1106749645
 GameObject:
@@ -828,6 +836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &1465520409 stripped
 GameObject:
@@ -847,6 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &1863239455 stripped
 GameObject:
@@ -866,6 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &2004471745 stripped
 GameObject:
@@ -885,6 +899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a0a84db0d1a9458bfb7b577af2186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectObject: {fileID: 0}
+  offset: 0
   messageScript: {fileID: 371070606}
 --- !u!1 &2075545975
 GameObject:
