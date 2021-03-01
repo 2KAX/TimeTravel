@@ -4,7 +4,7 @@ using UnityEngine;
 
 // 2 - Ce script gère la classe Dynamite et les méthodes liées à cette classe.
 
-public class Dynamite : MonoBehaviour
+public class Dynamite : WhenGrabbed
 {
 	public ParticleSystem fuseEffect; // 2 - Variable de l'effet de particule
 	public string explodeOnTag; // 2 - Le tag de l'objet sur lequel la dynamite va exploser
@@ -15,6 +15,8 @@ public class Dynamite : MonoBehaviour
 	private AudioSource firefuse;//3.audio fire fuse
 	private AudioSource explosion; // 3. audio explosion
 
+	public ControllerGrabObject hand;
+
 
 	private void Start()
 	{
@@ -22,15 +24,16 @@ public class Dynamite : MonoBehaviour
 		firefuse =  audioSources[0];
 		explosion = audioSources[1];
 		spawnLocation = transform.position;
-		Invoke("Grab", 2f);
+		//Invoke("Grab", 2f);
 	}
 
-	/// <summary>
-	/// À appeler quand le joueur saisit l'objet
-	/// </summary>
+
+    /// <summary>
+    /// À appeler quand le joueur saisit l'objet
+    /// </summary>
 
     // 2 - Cette fonction va lancer l'apparition de particule lorsqu'on attrape la dynamite 
-	public void Grab()
+    public override void Grab()
     {
 		fuseEffect.Play();
 		//3.active audio lors du saisi
@@ -38,6 +41,11 @@ public class Dynamite : MonoBehaviour
 		
 		fuseOn = true;
 	}
+
+    public override void Released()
+    {
+		return;
+    }
 
     public void OnTriggerEnter(Collider other)
 	{

@@ -44,7 +44,7 @@ public class ControllerGrabObject : MonoBehaviour {
     // Stores the GameObject that the trigger is currently colliding with, so you have the ability to grab the object.
     private GameObject collidingObject;
     // Serves as a reference to the GameObject that the player is currently grabbing.
-    private GameObject objectInHand;
+    public GameObject objectInHand;
 
     private void SetCollidingObject(Collider col)
     {
@@ -55,6 +55,7 @@ public class ControllerGrabObject : MonoBehaviour {
         }
         // Assigns the object as a potential grab target.
         collidingObject = col.gameObject;
+        Debug.Log("Can grab" + collidingObject.name);
     }
 
     // When the trigger collider enters another, this sets up the other collider as a potential grab target.
@@ -88,14 +89,20 @@ public class ControllerGrabObject : MonoBehaviour {
         // Add a new joint that connects the controller to the object using the AddFixedJoint() method below.
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
+        //If the object needs to do something when grabbed
+        if (objectInHand.GetComponent<WhenGrabbed>())
+        {
+            WhenGrabbed effect = objectInHand.GetComponent<WhenGrabbed>();
+            effect.Grab();
+        }
     }
 
     // Make a new fixed joint, add it to the controller, and then set it up so it doesn’t break easily. Finally, you return it.
     private FixedJoint AddFixedJoint()
     {
         FixedJoint fx = gameObject.AddComponent<FixedJoint>();
-        fx.breakForce = 20000;
-        fx.breakTorque = 20000;
+        fx.breakForce = 2000000;
+        fx.breakTorque = 2000000;
         return fx;
     }
 
@@ -110,6 +117,12 @@ public class ControllerGrabObject : MonoBehaviour {
             // Add the speed and rotation of the controller when the player releases the object, so the result is a realistic arc.
             objectInHand.GetComponent<Rigidbody>().velocity = velocity;
             objectInHand.GetComponent<Rigidbody>().angularVelocity = angularVelocity;
+        }
+        //If the object needs to do something when release
+        if (objectInHand.GetComponent<WhenGrabbed>())
+        {
+            WhenGrabbed effect = objectInHand.GetComponent<WhenGrabbed>();
+            effect.Released();
         }
         // Remove the reference to the formerly attached object.
         objectInHand = null;
