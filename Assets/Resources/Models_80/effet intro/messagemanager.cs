@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using Valve.VR;
 
 public class messagemanager : MonoBehaviour
 {
@@ -22,8 +23,11 @@ public class messagemanager : MonoBehaviour
             + "Nous comptons sur moi, euh sur toi, Détective!";
     */
 
+    //A reference to the object being tracked. In this case, a controller.
+    public SteamVR_Action_Boolean Movement;
+    public SteamVR_Input_Sources handType;
 
-       
+
     //3. 　string pour separer les textes
     [SerializeField]
     private string splitString = "<>";
@@ -92,7 +96,7 @@ public class messagemanager : MonoBehaviour
 
             //　a modifier 
             //3. si on appuye sur le button de souris gauche, affiche tout d'un coup
-            if (Input.GetMouseButtonDown(0)) // doit marcher avec les manettes
+            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/) // doit marcher avec les manettes
             {
                 //　ajout du message restant
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
@@ -113,7 +117,7 @@ public class messagemanager : MonoBehaviour
             }
 
             //　si on clique le button de souris, on traite le message suivant
-            if (Input.GetMouseButtonDown(0))
+            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/)
             {
                 nowTextNum = 0;
                 messageNum++;

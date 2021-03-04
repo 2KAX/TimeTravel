@@ -385,6 +385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMessage: 
+  Movement:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  handType: 2
   splitString: <>
   textSpeed: 0.05
   clickFlashTime: 0.2
