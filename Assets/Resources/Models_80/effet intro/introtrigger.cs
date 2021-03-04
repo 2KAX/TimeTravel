@@ -12,7 +12,7 @@ public class introtrigger : WhenGrabbed
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Grab", 3f);
+        
     }
 
 
