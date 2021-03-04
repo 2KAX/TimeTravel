@@ -5,7 +5,7 @@ using UnityEngine;
 public class introtrigger : WhenGrabbed
 {
 
-    private bool isFirst = true;
+    private static bool isFirst = true;
 
     public managedissolve dis;
 
