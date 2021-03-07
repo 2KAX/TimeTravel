@@ -15,19 +15,15 @@ public class New_Walkman : MonoBehaviour
     private GameObject lastTape;
 
     private AudioSource asource;
+  
 
     // Start is called before the first frame update
     void Start()
     {
         zoneManager = GetComponent<New_ZoneManager>();
         zoneActuelle = New_ZoneManager.zoneActuelle;
-       
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-     
+        
 
     }
 
@@ -45,13 +41,56 @@ public class New_Walkman : MonoBehaviour
                     currentTape = collision.gameObject;
 
                     currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                    
-                    currentTape.transform.parent = this.transform;
-                  
+                    currentTape.transform.parent = this.transform.GetChild(0).transform;
 
-                     //currentTape.transform.position = this.transform.position;
-                     //currentTape.transform.rotation = this.transform.rotation;
-                    
+
+
+                    //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
+                    currentTape.transform.localPosition = Vector3.zero;
+                   
+                    currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
+
+          
+
+                    //currentTape.transform.localPosition = transform.position;// this.transform.position;
+                    //currentTape.transform.rotation = this.transform.rotation;
+
+                    // 2 - On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
+                    Debug.Log(currentTape.name);
+                    StartCoroutine("PlaySongCoroutine");
+                }
+            }
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        // 2 - Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
+        if (currentTape == null && other.gameObject != lastTape)
+        {
+            foreach (GameObject tape in tapes)
+            {
+                //3.check if collision is a cassete 
+                if (other.gameObject.name == tape.name)
+                {
+                    // 2 - On définit la nouvelle cassette et on récupère certaines informations.
+                    currentTape = other.gameObject;
+
+                    currentTape.GetComponent<Rigidbody>().isKinematic = true;
+                    currentTape.transform.parent = this.transform.GetChild(0).transform;
+
+
+
+                    //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
+                    currentTape.transform.localPosition = Vector3.zero;
+
+                    currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
+
+
+
+                    //currentTape.transform.localPosition = transform.position;// this.transform.position;
+                    //currentTape.transform.rotation = this.transform.rotation;
+
                     // 2 - On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
                     Debug.Log(currentTape.name);
                     StartCoroutine("PlaySongCoroutine");
@@ -68,16 +107,15 @@ public class New_Walkman : MonoBehaviour
             lastTape = null;
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == lastTape)
+        {
+            lastTape = null;
+        }
+    }
 
-    /* private void OnTriggerEnter(Collider other)
-     {
-         // 2 - Quand on collisionne avec le controller.
-         if (other.gameObject.tag == "Controller" /*&& !hasAppeared)
-         {
-             //hasAppeared = true;
-             //objetAFaireApparaitre.SetActive(true);
-         }
-     }*/
+
 
 
     IEnumerator PlaySongCoroutine()
@@ -90,20 +128,14 @@ public class New_Walkman : MonoBehaviour
             // Le modèle est en dessous, il reste à le faire pour toutes les casettes.
 
             case "K7rock1989queen_2050":
-                // 2 - On charge la musique voulue
-                //Object obj = Resources.Load("Queen TheMiracle", typeof(AudioSource));
-                //AudioClip musique = (AudioClip)obj;
+     
                 var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
-                // 2 - On le place sur le walkman
-                // ObjetAFaireApparaitre ?? Peut etre le Walkman d'où :
-                // Sinon il faut extraire l'AudioSource du Walkman
-                asource = tapes[2].GetComponent<AudioSource>();
+                 asource = tapes[2].GetComponent<AudioSource>();
                 asource.clip = musique;
                 
                 break;
 
             case "K7future":
-               
                 AudioClip musiquefutur = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
                 asource = tapes[1].GetComponent<AudioSource>();
                 asource.clip = musiquefutur;
@@ -113,16 +145,15 @@ public class New_Walkman : MonoBehaviour
                 asource = tapes[0].GetComponent<AudioSource>();
                 asource.clip = musiquewestern;
                 break;
+      
 
         }
         asource.Play();
-        Debug.Log("sdfsd");
-        yield return new WaitForSeconds(8); //On joue la musique 8 secondes
-        // On arrête la musique
+        
+        yield return new WaitForSeconds(5); 
+
         asource.Stop();
         Debug.Log("Song ended !");
-
-        // TODO : Si on joue la bonne cassette, on se TP d'une zone à l'autre.
 
         switch (currentTape.name)
         {
@@ -135,6 +166,7 @@ public class New_Walkman : MonoBehaviour
             case "K7farWest":
                 zoneManager.GoToC();
                 break;
+        
 
         }
         // On éjecte la cassette du walkman
@@ -142,7 +174,7 @@ public class New_Walkman : MonoBehaviour
         currentTape.GetComponent<Rigidbody>().isKinematic = false;
         lastTape = currentTape;
         currentTape = null;
-        Debug.Log("reject");
+        
 
     }
 
