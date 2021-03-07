@@ -9,7 +9,7 @@ public enum ourZone { eighties, Western, fifties ,green }
 public class New_ZoneManager : MonoBehaviour
 {
     public static ourZone zoneActuelle = ourZone.eighties;
-    int i;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +20,7 @@ public class New_ZoneManager : MonoBehaviour
     {
         //3. on commence le jeux dans la scene 80s 
        // SceneManager.LoadScene("80s");
-        i = 0;
+    
         
     }
 
