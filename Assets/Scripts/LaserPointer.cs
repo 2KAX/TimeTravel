@@ -5,7 +5,7 @@ using Valve.VR;
 
 public class LaserPointer : MonoBehaviour {
 
-    private SteamVR_TrackedObject trackedObj;
+    private GameObject trackedObj;
     public SteamVR_Action_Boolean Movement;
     public SteamVR_Input_Sources handType;
 
@@ -34,7 +34,7 @@ public class LaserPointer : MonoBehaviour {
 
     void Awake()
     {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        trackedObj = this.gameObject;
     }
     // This is a reference to the Laser’s prefab.
     public GameObject laserPrefab;
@@ -93,11 +93,13 @@ public class LaserPointer : MonoBehaviour {
         //if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
         if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
         {
+            Debug.Log("stickdown");
             RaycastHit hit;
 
             // Shoot a ray from the controller. If it hits something, make it store the point where it hit and show the laser.
-            if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 100, teleportMask))
+            if (Physics.Raycast(trackedObj.transform.position, transform.forward,out hit, Mathf.Infinity,teleportMask))
             {
+                Debug.Log("hitted");
                 hitPoint = hit.point;
                 ShowLaser(hit);
                 // Show the teleport reticle.
@@ -116,6 +118,7 @@ public class LaserPointer : MonoBehaviour {
         //if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
         if (SteamVR_Actions._default.Teleport.GetStateUp(handType) && shouldTeleport)
         {
+            Debug.Log("Teleportation");
             Teleport();
         }
     }
