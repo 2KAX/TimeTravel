@@ -173,7 +173,7 @@ MonoBehaviour:
   teleportReticleOffset: {x: 0, y: 0, z: 0}
   teleportMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   laserPrefab: {fileID: 1126542511671008, guid: d0391d182d2bfbb49a64b64be0dc585f,
     type: 3}
 --- !u!114 &8886727803038875563
@@ -192,6 +192,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   handType: 1
+  objectInHand: {fileID: 0}
 --- !u!1 &8886727802503965083
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +459,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
   handType: 2
+  objectInHand: {fileID: 0}
 --- !u!1 &8886727802504013507
 GameObject:
   m_ObjectHideFlags: 0
