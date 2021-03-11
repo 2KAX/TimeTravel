@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 8847037509753166379}
   - component: {fileID: 8886727803038875562}
   - component: {fileID: 8886727803038875563}
+  - component: {fileID: 1477689946}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -193,6 +194,20 @@ MonoBehaviour:
     needsReinit: 0
   handType: 1
   objectInHand: {fileID: 0}
+--- !u!114 &1477689946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886727802503951345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c2a0d208f5261429b93000ddbcfd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  turnSensitivity: 15
 --- !u!1 &8886727802503965083
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +379,7 @@ GameObject:
   - component: {fileID: 8847037508367926691}
   - component: {fileID: 8886727802241845973}
   - component: {fileID: 8886727802241845974}
+  - component: {fileID: 1025584154}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -460,6 +476,20 @@ MonoBehaviour:
     needsReinit: 0
   handType: 2
   objectInHand: {fileID: 0}
+--- !u!114 &1025584154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886727802503985623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c2a0d208f5261429b93000ddbcfd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 2
+  turnSensitivity: 15
 --- !u!1 &8886727802504013507
 GameObject:
   m_ObjectHideFlags: 0
