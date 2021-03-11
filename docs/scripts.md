@@ -2,11 +2,11 @@ Scripts liés aux controls / déplacement
 
 * ControllerGrabObject : script des manettes pour attraper / lancer des objets
 
-* LaserPointer: gérer le déplacement dans la scène
+* LaserPointer: gérer le déplacement dans la scène, ce script nécessite de mettre le layer "Floor" sur les GameObjects où le déplacement dessus est autorisé
 
 * WhenGrabbed : classe abstraite appellée par ControllerGrabObject pour activer des effets quand on grab ou release un objet
 
-* ZoneManager : Gère les zones
+* New_ZoneManager : Gère les zones
 
 Scripts liés aux objets de la scène : 
 
@@ -22,4 +22,4 @@ Scripts liés aux objets de la scène :
 
 * tiroir : script du tiroir magique pour avoir les objets entre plusieurs scènes
 
-* Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
+* New_Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
