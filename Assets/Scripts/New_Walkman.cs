@@ -27,7 +27,7 @@ public class New_Walkman : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+  void OnCollisionEnter(Collision collision)
     {
         // 2 - Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
         if (currentTape == null && collision.gameObject != lastTape)
@@ -43,14 +43,10 @@ public class New_Walkman : MonoBehaviour
                     currentTape.GetComponent<Rigidbody>().isKinematic = true;
                     currentTape.transform.parent =  this.transform.GetChild(0).transform;
 
-
-
                     //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
-                    currentTape.transform.localPosition = Vector3.zero;
-                   
+                    //currentTape.transform.localPosition = transform.TransformPoint(Vector3.zero);
+                    currentTape.transform.position = transform.TransformPoint(Vector3.zero);
                     currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
-
-          
 
                     //currentTape.transform.localPosition = transform.position;// this.transform.position;
                     //currentTape.transform.rotation = this.transform.rotation;
@@ -63,43 +59,9 @@ public class New_Walkman : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        //  Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
-        if (currentTape == null && other.gameObject != lastTape)
-        {
-            foreach (GameObject tape in tapes)
-            {
-                //3.check if collision is a cassete 
-                if (other.gameObject.name == tape.name)
-                {
-                    // 2 - On définit la nouvelle cassette et on récupère certaines informations.
-                    currentTape = other.gameObject;
 
-                    currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                    currentTape.transform.parent = this.transform.GetChild(0).transform;
-
-
-
-                    //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
-                    currentTape.transform.localPosition = Vector3.zero;
-
-                    currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
-
-
-
-                    //currentTape.transform.localPosition = transform.position;// this.transform.position;
-                    //currentTape.transform.rotation = this.transform.rotation;
-
-                    // 2 - On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
-                    Debug.Log(currentTape.name);
-                    StartCoroutine("PlaySongCoroutine");
-                }
-            }
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
+  
+   private void OnCollisionExit(Collision collision)
     {
         // 2 - On réinitialise certaines informations lorsqu'on quitte la collision.
         if (collision.gameObject == lastTape)
@@ -107,13 +69,7 @@ public class New_Walkman : MonoBehaviour
             lastTape = null;
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == lastTape)
-        {
-            lastTape = null;
-        }
-    }
+
 
 
 
