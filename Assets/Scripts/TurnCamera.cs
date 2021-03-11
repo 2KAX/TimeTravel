@@ -16,7 +16,8 @@ public class TurnCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parent = this.gameObject.GetComponentInParent<Transform>();
+        parent = this.gameObject.transform.parent;
+        Debug.Log("Started with" + parent.gameObject.name);
     }
 
     // Update is called once per frame
@@ -24,11 +25,13 @@ public class TurnCamera : MonoBehaviour
     {
         if (SteamVR_Actions._default.SnapTurnLeft.GetStateDown(handType)&& !hasTurned)
         {
+            Debug.Log("Turned left !");
             parent.rotation *= Quaternion.AngleAxis(turnSensitivity, Vector3.up);
             hasTurned = true;
         }
         else if (SteamVR_Actions._default.SnapTurnRight.GetStateDown(handType) && !hasTurned)
         {
+            Debug.Log("Turned right !");
             parent.rotation *= Quaternion.AngleAxis(-turnSensitivity, Vector3.up);
             hasTurned = true;
         }
