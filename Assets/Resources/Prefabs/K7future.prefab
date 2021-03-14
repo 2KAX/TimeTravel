@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3420843257565996343}
   m_Layer: 0
   m_Name: K7future
-  m_TagString: Untagged
+  m_TagString: K7future
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
