@@ -9,11 +9,15 @@ public enum ourZone { eighties, Western, fifties ,green }
 public class New_ZoneManager : MonoBehaviour
 {
     public static ourZone zoneActuelle = ourZone.eighties;
-    
+    public GameObject[] tapes;
+
     // Start is called before the first frame update
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(tapes[0]);
+        DontDestroyOnLoad(tapes[1]);
+        DontDestroyOnLoad(tapes[2]);
     }
 
     void Start()

@@ -7,6 +7,7 @@ public class New_Walkman : MonoBehaviour
     private New_ZoneManager zoneManager;
     private ourZone zoneActuelle;
 
+ 
 
 
     public GameObject[] tapes;
@@ -41,15 +42,11 @@ public class New_Walkman : MonoBehaviour
                     currentTape = collision.gameObject;
 
                     currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                    currentTape.transform.parent =  this.transform.GetChild(0).transform;
+                    currentTape.transform.parent =  this.transform;
 
-                    //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
-                    //currentTape.transform.localPosition = transform.TransformPoint(Vector3.zero);
-                    currentTape.transform.position = transform.TransformPoint(Vector3.zero);
-                    currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
 
                     //currentTape.transform.localPosition = transform.position;// this.transform.position;
-                    //currentTape.transform.rotation = this.transform.rotation;
+                    currentTape.transform.rotation = this.transform.rotation;
 
                     //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
                     Debug.Log(currentTape.name);
@@ -70,10 +67,6 @@ public class New_Walkman : MonoBehaviour
         }
     }
 
-
-
-
-
     IEnumerator PlaySongCoroutine()
     {
         Debug.Log("Song started !");
@@ -87,7 +80,7 @@ public class New_Walkman : MonoBehaviour
      
                 var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
                  asource = tapes[2].GetComponent<AudioSource>();
-                asource.clip = musique;
+                 asource.clip = musique;
                 
                 break;
 
@@ -131,6 +124,7 @@ public class New_Walkman : MonoBehaviour
         lastTape = currentTape;
         currentTape = null;
         
+       
 
     }
 
