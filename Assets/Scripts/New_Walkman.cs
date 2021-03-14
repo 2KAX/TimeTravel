@@ -110,7 +110,10 @@ public class New_Walkman : MonoBehaviour
 
         }
         // On éjecte la cassette du walkman
+        currentTape.transform.localPosition = new Vector3(0f, Random.Range(-1f, 1f), 1f);
+        currentTape.transform.localRotation = Quaternion.Euler(Random.Range(2f,90f), 0f, Random.Range(2f, 70f));
         currentTape.transform.parent = null;
+        
         currentTape.GetComponent<Rigidbody>().isKinematic = false;
 
         currentTape = null;
