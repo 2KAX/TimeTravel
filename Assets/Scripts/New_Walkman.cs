@@ -8,12 +8,7 @@ public class New_Walkman : MonoBehaviour
     private ourZone zoneActuelle;
 
 
-
-    public GameObject[] tapes;
-
     private GameObject currentTape;
-    private GameObject lastTape;
-
     private AudioSource asource;
   
 
@@ -23,16 +18,14 @@ public class New_Walkman : MonoBehaviour
         zoneManager = GetComponent<New_ZoneManager>();
         zoneActuelle = New_ZoneManager.zoneActuelle;
 
-        
-
     }
 
   void OnCollisionEnter(Collision collision)
     {
         // 2 - Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
-        if (currentTape == null && collision.gameObject != lastTape)
+        if (currentTape == null/* && collision.gameObject != lastTape*/)
         {
-            foreach (GameObject tape in tapes)
+            /*foreach (GameObject tape in tapes)
             {
                 //3.check if collision is a cassete 
                 if (collision.gameObject.name == tape.name)
@@ -41,37 +34,34 @@ public class New_Walkman : MonoBehaviour
                     currentTape = collision.gameObject;
 
                     currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                    currentTape.transform.parent =  this.transform.GetChild(0).transform;
+                    currentTape.transform.parent =  this.transform;
 
-                    //currentTape.transform.position = currentTape.transform.parent.transform.position;// new Vector3(0,0,0);// transform.position;// Vector3.zero;// currentTape.transform.parent.transform.localPosition;
-                    //currentTape.transform.localPosition = transform.TransformPoint(Vector3.zero);
-                    currentTape.transform.position = transform.TransformPoint(Vector3.zero);
-                    currentTape.transform.localRotation = currentTape.transform.parent.transform.rotation;
 
-                    //currentTape.transform.localPosition = transform.position;// this.transform.position;
-                    //currentTape.transform.rotation = this.transform.rotation;
+                    currentTape.transform.localPosition = Vector3.zero;// this.transform.position;
+                    currentTape.transform.rotation = this.transform.rotation;
 
                     //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
                     Debug.Log(currentTape.name);
                     StartCoroutine("PlaySongCoroutine");
                 }
+            }*/
+            if(collision.gameObject.tag == "K7future" || collision.gameObject.tag == "K7farWest" || collision.gameObject.tag == "K7rock1989queen_2050")
+            {
+                currentTape = collision.gameObject;
+
+                currentTape.GetComponent<Rigidbody>().isKinematic = true;
+                currentTape.transform.parent = this.transform;
+
+                currentTape.transform.localPosition = Vector3.zero;// this.transform.position;
+                currentTape.transform.rotation = this.transform.rotation;
+
+                //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
+                Debug.Log(currentTape.name);
+                StartCoroutine("PlaySongCoroutine");
             }
         }
     }
     
-
-  
-   private void OnCollisionExit(Collision collision)
-    {
-        // 2 - On réinitialise certaines informations lorsqu'on quitte la collision.
-        if (collision.gameObject == lastTape)
-        {
-            lastTape = null;
-        }
-    }
-
-
-
 
 
     IEnumerator PlaySongCoroutine()
@@ -79,26 +69,24 @@ public class New_Walkman : MonoBehaviour
         Debug.Log("Song started !");
         switch (currentTape.name) // 2 - Cassette Actuelle  
         {
-            // 2 - TODO :
-            // En fonction du nom de la cassette, on joue la musique associé.
-            // Le modèle est en dessous, il reste à le faire pour toutes les casettes.
 
             case "K7rock1989queen_2050":
      
                 var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
-                 asource = tapes[2].GetComponent<AudioSource>();
-                asource.clip = musique;
+                 asource = currentTape.GetComponent<AudioSource>();
+                 asource.clip = musique;
                 
                 break;
 
             case "K7future":
                 AudioClip musiquefutur = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
-                asource = tapes[1].GetComponent<AudioSource>();
+                asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquefutur;
                 break;
+
             case "K7farWest":
                 AudioClip musiquewestern = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
-                asource = tapes[0].GetComponent<AudioSource>();
+                asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquewestern;
                 break;
       
@@ -126,11 +114,26 @@ public class New_Walkman : MonoBehaviour
 
         }
         // On éjecte la cassette du walkman
-        currentTape.transform.parent = null;
-        currentTape.GetComponent<Rigidbody>().isKinematic = false;
-        lastTape = currentTape;
-        currentTape = null;
+        Destroy(currentTape);
+        if (zoneManager.Used80)
+        {
+            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7rock1989queen_2050"), new Vector3(2f, 2f, 2f), Quaternion.identity));
+        }
+        if (zoneManager.Usedfutur)
+        {
+            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7future"), new Vector3(2f, 2f, 2f), Quaternion.identity));
+        }
+        if (zoneManager.Usedwest)
+        {
+            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7farWest"), new Vector3(2f, 2f, 2f), Quaternion.identity));
+        }
+        //currentTape.transform.parent = null;
+        //currentTape.GetComponent<Rigidbody>().isKinematic = false;
+
+        //currentTape = null;
+
         
+       
 
     }
 
