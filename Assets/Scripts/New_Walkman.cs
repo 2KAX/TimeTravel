@@ -10,6 +10,8 @@ public class New_Walkman : MonoBehaviour
 
     private GameObject currentTape;
     private AudioSource asource;
+
+
   
 
     // Start is called before the first frame update
@@ -17,7 +19,6 @@ public class New_Walkman : MonoBehaviour
     {
         zoneManager = GetComponent<New_ZoneManager>();
         zoneActuelle = New_ZoneManager.zoneActuelle;
-
     }
 
   void OnCollisionEnter(Collision collision)
@@ -75,19 +76,21 @@ public class New_Walkman : MonoBehaviour
                 var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
                  asource = currentTape.GetComponent<AudioSource>();
                  asource.clip = musique;
-                
+                if (!zoneManager.Used80) zoneManager.Used80 = true;
                 break;
 
             case "K7future":
                 AudioClip musiquefutur = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
                 asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquefutur;
+                if (!zoneManager.Usedfutur) zoneManager.Usedfutur = true;
                 break;
 
             case "K7farWest":
                 AudioClip musiquewestern = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
                 asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquewestern;
+                if (!zoneManager.Usedwest) zoneManager.Usedwest = true;
                 break;
       
 
@@ -98,6 +101,20 @@ public class New_Walkman : MonoBehaviour
 
         asource.Stop();
         Debug.Log("Song ended !");
+
+        if (zoneManager.Used80)
+        {
+            DontDestroyOnLoad(GameObject.Find("K7rock1989queen_2050"));
+        }
+        if (zoneManager.Usedfutur)
+        {
+            DontDestroyOnLoad(GameObject.Find("K7future"));
+        }
+        if (zoneManager.Usedwest)
+        {
+            DontDestroyOnLoad(GameObject.Find("K7farWest"));
+        }
+
 
         switch (currentTape.name)
         {
@@ -114,23 +131,13 @@ public class New_Walkman : MonoBehaviour
 
         }
         // On éjecte la cassette du walkman
-        Destroy(currentTape);
-        if (zoneManager.Used80)
-        {
-            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7rock1989queen_2050"), new Vector3(2f, 2f, 2f), Quaternion.identity));
-        }
-        if (zoneManager.Usedfutur)
-        {
-            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7future"), new Vector3(2f, 2f, 2f), Quaternion.identity));
-        }
-        if (zoneManager.Usedwest)
-        {
-            Instantiate((GameObject)Instantiate((GameObject)Resources.Load("Prefabs/K7farWest"), new Vector3(2f, 2f, 2f), Quaternion.identity));
-        }
-        //currentTape.transform.parent = null;
-        //currentTape.GetComponent<Rigidbody>().isKinematic = false;
 
-        //currentTape = null;
+
+       
+        currentTape.transform.parent = null;
+        currentTape.GetComponent<Rigidbody>().isKinematic = false;
+
+        currentTape = null;
 
         
        

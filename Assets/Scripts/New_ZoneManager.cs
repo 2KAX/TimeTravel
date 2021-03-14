@@ -21,6 +21,10 @@ public class New_ZoneManager : MonoBehaviour
         {
             return used80;
         }
+        set
+        {
+            used80 = value;
+        }
     }
     public bool Usedwest
     {
@@ -28,9 +32,14 @@ public class New_ZoneManager : MonoBehaviour
         {
             return usedWest;
         }
+        set
+        {
+            usedWest = value;
+        }
     }
     public bool Usedfutur {
         get { return usedfutur; }
+        set { usedfutur = value; }
     }
 
     // Start is called before the first frame update
@@ -43,9 +52,7 @@ public class New_ZoneManager : MonoBehaviour
 
     void Start()
     {
-        //3. on commence le jeux dans la scene 80s 
-        // SceneManager.LoadScene("80s");
-       // Instantiate(Instantiate((GameObject)Resources.Load("Prefabs/K7rock1989queen_2050"), new Vector3(2f, 2f, 2f), Quaternion.identity));
+   
 
     }
 
@@ -59,7 +66,6 @@ public class New_ZoneManager : MonoBehaviour
     public void GoToA()
     {
         SceneManager.LoadScene("80s");
-        used80 = true;
         zoneActuelle = ourZone.eighties;
         Debug.Log("Going to 80s !");
     }
@@ -67,7 +73,7 @@ public class New_ZoneManager : MonoBehaviour
     public void GoToB()
     {
         SceneManager.LoadScene("2050");
-        usedfutur = true;
+
         zoneActuelle = ourZone.fifties;
         Debug.Log("Going to 2050s !");
     }
@@ -75,7 +81,7 @@ public class New_ZoneManager : MonoBehaviour
     public void GoToC()
     {
         SceneManager.LoadScene("Western");
-        usedWest = true;
+
         zoneActuelle = ourZone.Western;
         Debug.Log("Going to Western !");
     }
