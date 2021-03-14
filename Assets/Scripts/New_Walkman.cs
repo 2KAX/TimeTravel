@@ -6,8 +6,6 @@ public class New_Walkman : MonoBehaviour
 {
     private New_ZoneManager zoneManager;
     private ourZone zoneActuelle;
-
-
     private GameObject currentTape;
     private AudioSource asource;
 
@@ -26,36 +24,17 @@ public class New_Walkman : MonoBehaviour
         // 2 - Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
         if (currentTape == null/* && collision.gameObject != lastTape*/)
         {
-            /*foreach (GameObject tape in tapes)
-            {
-                //3.check if collision is a cassete 
-                if (collision.gameObject.name == tape.name)
-                {
-                    // 2 - On définit la nouvelle cassette et on récupère certaines informations.
-                    currentTape = collision.gameObject;
 
-                    currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                    currentTape.transform.parent =  this.transform;
-
-
-                    currentTape.transform.localPosition = Vector3.zero;// this.transform.position;
-                    currentTape.transform.rotation = this.transform.rotation;
-
-                    //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
-                    Debug.Log(currentTape.name);
-                    StartCoroutine("PlaySongCoroutine");
-                }
-            }*/
             if(collision.gameObject.tag == "K7future" || collision.gameObject.tag == "K7farWest" || collision.gameObject.tag == "K7rock1989queen_2050")
             {
                 currentTape = collision.gameObject;
 
                 currentTape.GetComponent<Rigidbody>().isKinematic = true;
-                currentTape.transform.parent = this.transform;
+                currentTape.transform.parent = this.transform.GetChild(0).transform;
 
-                currentTape.transform.localPosition = Vector3.zero;// this.transform.position;
-                currentTape.transform.rotation = this.transform.rotation;
-
+                currentTape.transform.localPosition = Vector3.zero;
+                currentTape.transform.localRotation = currentTape.transform.parent.localRotation;
+                currentTape.transform.Rotate(Vector3.right, 90);
                 //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
                 Debug.Log(currentTape.name);
                 StartCoroutine("PlaySongCoroutine");
@@ -131,9 +110,6 @@ public class New_Walkman : MonoBehaviour
 
         }
         // On éjecte la cassette du walkman
-
-
-       
         currentTape.transform.parent = null;
         currentTape.GetComponent<Rigidbody>().isKinematic = false;
 
