@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class planterGraine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Script associé au pot pour planter la graine
 
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Graine")
         {
-            other.gameObject.transform.SetParent(this.transform);
-            other.gameObject.transform.localPosition = Vector3.zero;
-            Destroy(other.gameObject.GetComponent<Rigidbody>());
+            other.gameObject.transform.position = this.transform.position; // On met la graine dans le pot
+            Destroy(other.gameObject.GetComponent<Rigidbody>()); //Pour ne plus pouvoir prendre la graine
         }
     }
 }
