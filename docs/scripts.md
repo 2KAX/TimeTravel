@@ -25,3 +25,101 @@ Scripts liés aux objets de la scène :
 * tiroir : script du tiroir magique pour avoir les objets entre plusieurs scènes
 
 * Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
+
+
+# ControllerGrabObject
+
+This script manages the controls and interactions the user has with the headset controllers
+
+## Attached to
+
+Either the Left or the Right Hand (opposite to Laser Pointer script).
+
+## Parameters
+
+- Movement : An action defined on SteamVR (https://sarthakghosh.medium.com/a-complete-guide-to-the-steamvr-2-0-input-system-in-unity-380e3b1b3311)
+- HandType : Right or Left Hand
+
+## Explanation
+
+This script finds the object the hands are touching by using the a collider as trigger.
+If the player holds the trigger the object becomes a child of the hand and moves with it.
+If the player releases the trigger, releases the object.
+Apparently all objects that have a RigidBody can be grabbed, we could maybe use a Layer or a Tag to define them?
+
+# Cassette (DEPRECATED)
+
+Ce script crée la classe Cassette qui regroupe toutes les informations nécessaires de la cassette. (Not that helpful)
+
+Apparently this script isn't necessary anymore
+
+## Attached to 
+
+All K7 objects
+
+## Parameters
+
+- ac : An Audio Clip to be played
+- onMusicChange : Apparently a function to be executed (doesn't seem to be set)
+- autresCassettes : A list of other cassette (What does it do? Sometimes it is filled, sometimes not)
+- Zm : Reference to the ZoneManager
+- tiroirs : A reference to the drawer objects (that have an tiroir script attached)
+- isSelected : Apparently indicates if the cassette object is selected or not
+- asource : reference to the audio source that will play the audio clip
+
+## Explanation
+
+If the cassette object collides with the walkman and if it is selected (What does it means to be selected?)
+If it's the first time plays the audio and calls the function associated with onMusicChange
+If not, teleports all cassettes in autresCassettes to the drawer
+
+changeCassette() - Teleports the user to the drawer
+
+# Dynamite
+
+It's a child of WhenGrabbed, controls the Dynamite fire and explosion animation, as well as the explosion effects on the scenem, breaking the wall.
+Ce script gère la classe Dynamite et les méthodes liées à cette classe.
+
+## Attached to
+
+The Dynamite prefab
+
+## Parameters
+
+- fuseEffect : Reference to a burning effect in the particle system
+- explodeOnTag : tag of the object that should trigger the explosion
+- explosionEffect : Reference to an explosion effect in the particle system
+- hand : Not used, maybe set by another script (To Delete?)
+
+Grab() - Function to start the fire effect when the Dynamite is grabbed (Behavior specified by the WhenGrabbed abstract class)
+
+# Fracturable
+
+Cette classe fracturable gère la fracture du GameObject
+
+## Attached to 
+
+DestructableWall prefab
+
+## Parameters
+
+- impulseOnFracture : vector3 defining the direction in which the fragments should fly
+- onFracture : event to trigger when it breaks (It's called in the script, but not set in the prefabs. Is it set by another script or it can be deleted?)
+- timeBeforDebrisDisappear : time to wait before the fragments disappear
+
+# LaserPointer
+
+
+
+## Attached to
+
+Controller(left) and Controller(right), but only active in one of them
+
+## Parameters
+
+- Movement : 
+- handType : 
+
+
+
+
