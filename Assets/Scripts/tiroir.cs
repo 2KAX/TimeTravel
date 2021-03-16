@@ -11,12 +11,12 @@ public class tiroir : MonoBehaviour
     public tiroir[] autresTiroirs;
     // 2 - Variables qui contrôle la zone dans laquelle on est.
     public ZoneManager zm;
-    public Zone zoneTiroir;
+    public ourZone zoneTiroir;
 
     public void registerChildren(Transform tr)
     {
         // 2 - Cette fonction permet de créer le déplacement entre les temporalités du tiroir.
-        if (zm.zoneActuelle == zoneTiroir)
+        if (ZoneManager.zoneActuelle == zoneTiroir)
         {
             for (int i = 0; i < transform.childCount; i++)
             {

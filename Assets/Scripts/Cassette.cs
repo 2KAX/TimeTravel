@@ -63,7 +63,7 @@ public class Cassette : MonoBehaviour
         // 2 - Si la zone du tiroir correspond à la zone actuelle alors on téléporte le joueur vers le tiroir
         foreach (tiroir t in tiroirs)
         {
-            if (t.zoneTiroir == zm.zoneActuelle)
+            if (t.zoneTiroir == ZoneManager.zoneActuelle)
             {
                 transform.position = t.transform.position;
             }
