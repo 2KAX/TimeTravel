@@ -6,7 +6,7 @@ Scripts liés aux controls / déplacement
 
 * WhenGrabbed : classe abstraite appellée par ControllerGrabObject pour activer des effets quand on grab ou release un objet
 
-* New_ZoneManager : Gère les zones
+* ZoneManager : Gère les zones
 
 Scripts liés aux objets de la scène : 
 
@@ -20,6 +20,8 @@ Scripts liés aux objets de la scène :
 
 * PlayingSynthesizer : gérer le synthétiseur
 
+* PlanterGraine : permet de planter la graine dans les années 80 et de se tp à la fin du jeu, réagit au nom "Graine" de l'objet qui déclanche le trigger
+
 * tiroir : script du tiroir magique pour avoir les objets entre plusieurs scènes
 
-* New_Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
+* Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
