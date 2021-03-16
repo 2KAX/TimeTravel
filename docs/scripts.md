@@ -27,7 +27,7 @@ Scripts liés aux objets de la scène :
 * Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
 
 
-# ControllerGrabObject
+# ControllerGrabObject.cs
 
 This script manages the controls and interactions the user has with the headset controllers
 
@@ -47,7 +47,7 @@ If the player holds the trigger the object becomes a child of the hand and moves
 If the player releases the trigger, releases the object.
 Apparently all objects that have a RigidBody can be grabbed, we could maybe use a Layer or a Tag to define them?
 
-# Cassette (DEPRECATED)
+# Cassette.cs (DEPRECATED)
 
 Ce script crée la classe Cassette qui regroupe toutes les informations nécessaires de la cassette. (Not that helpful)
 
@@ -75,7 +75,7 @@ If not, teleports all cassettes in autresCassettes to the drawer
 
 changeCassette() - Teleports the user to the drawer
 
-# Dynamite
+# Dynamite.cs
 
 It's a child of WhenGrabbed, controls the Dynamite fire and explosion animation, as well as the explosion effects on the scenem, breaking the wall.
 Ce script gère la classe Dynamite et les méthodes liées à cette classe.
@@ -93,7 +93,7 @@ The Dynamite prefab
 
 Grab() - Function to start the fire effect when the Dynamite is grabbed (Behavior specified by the WhenGrabbed abstract class)
 
-# Fracturable
+# Fracturable.cs
 
 Cette classe fracturable gère la fracture du GameObject
 
@@ -107,9 +107,10 @@ DestructableWall prefab
 - onFracture : event to trigger when it breaks (It's called in the script, but not set in the prefabs. Is it set by another script or it can be deleted?)
 - timeBeforDebrisDisappear : time to wait before the fragments disappear
 
-# LaserPointer
+# LaserPointer.cs
 
-
+Implements movement inside a scene by pointing.
+Looks like a script provided by Valve with SteamVR. 
 
 ## Attached to
 
@@ -117,9 +118,13 @@ Controller(left) and Controller(right), but only active in one of them
 
 ## Parameters
 
-- Movement : 
-- handType : 
-
-
+- Movement : An action defined on SteamVR (https://sarthakghosh.medium.com/a-complete-guide-to-the-steamvr-2-0-input-system-in-unity-380e3b1b3311)
+- HandType : Right or Left Hand
+- CameraRigTransform : Transform of the CameraRig prefab
+- TeleportReticlePrefab : A reference to the teleport reticle prefab (the target that is not in the scene)
+- HeadTransform : A reference to the player’s head (the camera)
+- TeleportReticleOffset : Is the reticle offset from the floor, so there’s no “Z-fighting” with other surfaces
+- TeleportMask : A layer mask to filter the areas on which teleports are allowed
+- LaserPrefab : A reference to the Laser’s prefab
 
 
