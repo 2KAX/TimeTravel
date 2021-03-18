@@ -26,6 +26,7 @@ Scripts liés aux objets de la scène :
 
 * Walkman : Ce script est à placer sur le Walkman, il sert à gérer les interactions du walkman avec les cassettes qui seront mises dedans grâce au Controller. Dès que la cassette est mise dans le Walkman, on joue la musique qui est associé à la cassette si la musique qui est jouée est la bonne il y a un changement de temporalité.
 
+*messagemanager.cs : script which display the conversation of the introduction.
 
 # ControllerGrabObject.cs
 
