@@ -170,6 +170,19 @@ We can probably remove the references in the K7 with the removal of the Cassette
 
 Teleports all the hierarchical children of the correspondent drawer to the new zone.
 
+# TurnCamera.cs
+
+Debug script to use the joysticks to turn the camera.
+
+## Attached to
+
+Controller (left) and Controller (right) from the CameraRig
+
+## Parameters
+
+- HandType : Right or Left Hand
+- TurnSensitivity : The speed with which to turn the camera
+
 # ZoneManager.cs
 
 class that manages the movement between the different scenes,keeing the attached object.
