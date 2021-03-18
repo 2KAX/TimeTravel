@@ -21,7 +21,7 @@ public class PlayingSynthesizer : MonoBehaviour {
     public AudioClip Melody; // 2 - La mélodie qui sera jouée.
 
     private bool musicIsPlaying = false; // 2 - Booléen
-    public Cassette cassette; // 2 - Une cassette (classe Cassette)
+    public GameObject cassette; // 2 - Une cassette
     public AudioSource walkman; // 2 - AudioSource associé au Walkman
 
     private AudioSource asr; // 2 - Une AudioSource associé à la casette.
@@ -31,7 +31,7 @@ public class PlayingSynthesizer : MonoBehaviour {
     private void Start()
     {
         // 2 - On désactive la cassette (le GameObject)
-        cassette.gameObject.SetActive(false);
+        cassette.SetActive(false);
         // 2 - On récupère l'AudioSource du GameObject associé au script
         asr = GetComponent<AudioSource>();
         // 2 - On remplace son son
@@ -65,7 +65,7 @@ public class PlayingSynthesizer : MonoBehaviour {
         if (asr.clip == Melody && timerMusic > asr.clip.length)
         {
             // Faire poper la cassette
-            cassette.gameObject.SetActive(true);
+            cassette.SetActive(true);
         }
     }
 
