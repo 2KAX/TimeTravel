@@ -149,7 +149,26 @@ Synthesizer prefab
 
 The interaction uses the Collider associated with the Synthesizer prefab, if the Player Hands touch it twice within a time limit a song is played and a cassette appears, otherwise he needs to start again.
 
+# tiroir.cs
 
+Manages the utility of the drawer.
+When the player teleports between the different times, it follows keeping everything that is inside.
+
+## Attached to
+
+drawer, drawer80s, drawer2050 and drawer2050 (from the green future).
+Also found references in the K7farWest, the K7future and the Kyrick1998queen_2050.
+We can probably remove the references in the K7 with the removal of the Cassette.cs script.
+
+## Parameters
+
+- autresTiroirs : A list of all the other drawers
+- Zm : A reference to the zoneManager.
+- ZoneTiroir : The zone the drawer corresponds to.
+
+## Explanation
+
+Teleports all the hierarchical children of the correspondent drawer to the new zone.
 
 # ZoneManager.cs
 
