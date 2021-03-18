@@ -46,8 +46,6 @@ public class ZoneManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-
-
     }
 
     void Start()

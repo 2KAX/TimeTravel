@@ -36,8 +36,6 @@ public class managedissolve : MonoBehaviour
         rend = GetComponent<Renderer>();
         //rend.material.SetFloat("_DisScale", r);
 
- 
-
     }
 
     // Update is called once per frame
@@ -51,7 +49,6 @@ public class managedissolve : MonoBehaviour
            //Destroy(instantiateEffect, deleteTime);
         }
   */          
-
 
         if (r > 0 && !apparait && isfirsttouch)
         {
