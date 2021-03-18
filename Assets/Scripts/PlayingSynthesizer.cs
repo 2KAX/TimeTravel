@@ -4,11 +4,8 @@ using UnityEngine;
 
 // 2 - Ce script gère le moment où le joueur joue sur le synthé.
 
-public class PlayingSynthesizer : MonoBehaviour {
-    // 2 - Collider des controllers droites et gauches
-    public Collider RightHand;
-    public Collider LeftHand;
-
+public class PlayingSynthesizer : MonoBehaviour
+{
     // 2 - Les Timers et booléen associé
     private float timer = 0.0f;
     private float timerMusic = 0.0f;
@@ -21,17 +18,16 @@ public class PlayingSynthesizer : MonoBehaviour {
     public AudioClip Melody; // 2 - La mélodie qui sera jouée.
 
     private bool musicIsPlaying = false; // 2 - Booléen
-    public Cassette cassette; // 2 - Une cassette (classe Cassette)
-    public AudioSource walkman; // 2 - AudioSource associé au Walkman
+    public GameObject cassette; // 2 - Une cassette a faire apparaitre
 
-    private AudioSource asr; // 2 - Une AudioSource associé à la casette.
+    private AudioSource asr; // 2 - Une AudioSource associé au synthé.
 
 
 
     private void Start()
     {
         // 2 - On désactive la cassette (le GameObject)
-        cassette.gameObject.SetActive(false);
+        cassette.SetActive(false);
         // 2 - On récupère l'AudioSource du GameObject associé au script
         asr = GetComponent<AudioSource>();
         // 2 - On remplace son son
@@ -40,8 +36,9 @@ public class PlayingSynthesizer : MonoBehaviour {
 
 
 
-    void Update () {
-
+    void Update()
+    {
+        Debug.Log(TimerIsRunning && musicIsPlaying);
         if (TimerIsRunning)
         {
             // 2 - Si le timer est lancé alors on incrémente les timers.
@@ -49,33 +46,21 @@ public class PlayingSynthesizer : MonoBehaviour {
             timerMusic += Time.deltaTime;
         }
 
-        if (timer > TimeLimit)
-        {
-            // 2 - Si les timers dépassent le seuil pré-défini.
-            asr.Stop();
-            walkman.Play();
-            // 2 - On reset les variables
-            timerMusic = 0;
-            asr.clip = FirstNote;
-            TimerIsRunning = false;
-            musicIsPlaying = false;
-            timer = 0.0f;
-        }
-
         if (asr.clip == Melody && timerMusic > asr.clip.length)
         {
             // Faire poper la cassette
-            cassette.gameObject.SetActive(true);
+            cassette.SetActive(true);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // 2 - S'il y a collision entre le synthé et les mains du joueur.
-        if(other == RightHand || other == LeftHand)
+        if (other.CompareTag("Player"))
         {
+            Debug.Log("On veut jouer");
             // 2 - Si aucune note n'est jouée
-            if (!TimerIsRunning && !musicIsPlaying)
+            if (!TimerIsRunning)
             {
                 TimerIsRunning = true;
                 asr.Play();
@@ -92,11 +77,24 @@ public class PlayingSynthesizer : MonoBehaviour {
                     timerMusic = 0;
                     asr.Play();
                     musicIsPlaying = true;
-                    walkman.Stop();
                 }
-                timer = 0.0f; // 2 - On reset les varibles
+                timer = 0.0f; // 2 - On reset les variables
             }
-            
-        }  
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //S'il y avait collision entre le synthé et les mains du joueur.
+        if (other.CompareTag("Player"))
+        {
+            //Si on jouait la mélodie on la met en pause et on stoppe le timer
+            if (TimerIsRunning && musicIsPlaying)
+            {
+                TimerIsRunning = false;
+                asr.Pause();
+            }
+        }
     }
 }
