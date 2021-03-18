@@ -22,7 +22,7 @@ public class Walkman : MonoBehaviour
   void OnCollisionEnter(Collision collision)
     {
         // 2 - Si il n'y a pas de cassette dans le walkman, alors on met celle avec laquelle on est en collision.
-        if (currentTape == null/* && collision.gameObject != lastTape*/)
+        if (currentTape == null)
         {
 
             if(collision.gameObject.tag == "K7future" || collision.gameObject.tag == "K7farWest" || collision.gameObject.tag == "K7rock1989queen_2050")
