@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8980699292894189661}
   - component: {fileID: 8980699292894189660}
   - component: {fileID: 8980699292894189663}
-  - component: {fileID: 8980699292894189662}
   - component: {fileID: 8980699292894189665}
   - component: {fileID: 8980699292894189664}
   - component: {fileID: 8980699292894189658}
@@ -84,43 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8980699292894189662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8980699292894189667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd7d64afade90549bda6cb9b9e73644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 8300000, guid: 4376313dc80117f4cb1e0ec10e9ff5fd, type: 3}
-  onMusicChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: GoToA
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  autresCassettes:
-  - {fileID: 0}
-  - {fileID: 0}
-  zm: {fileID: 0}
-  tiroirs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  isSelected: 0
-  asource: {fileID: 0}
 --- !u!54 &8980699292894189665
 Rigidbody:
   m_ObjectHideFlags: 0
