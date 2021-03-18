@@ -97,9 +97,7 @@ Les fonction ZoneManager.GoToX sont appelées par l'évènement onMusicChange de
 
 #### Synthétiseur
 
-Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique et démarre un timer. Durant ce temps imparti, il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse.
-
-**TODO**: Implémenter la mise en pause de la musique lorsque le joueur ne touche pas le piano. Pour le moment, la musique se joue d'elle même et la cassette apparaît dans tous les cas.
+Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique. Il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse. La musique se met en pause lorsque le joueur ne touche plus le synthé, avant de reprendre où il s'est arrêté lorsqu'il touche à nouveau le synthé. Il reste possible de jouer de la musique même lorsqu'on a déjà fait apparaître la cassette une fois, ce qui est logique car l'instrument de musique est toujours là, on peut donc la jouer en boucle même si c'est inutile.
 
 #### Destruction du mur avec de la dynamite
 
