@@ -151,7 +151,7 @@ The interaction uses the Collider associated with the Synthesizer prefab, if the
 
 
 
-#ZoneManager.cs
+# ZoneManager.cs
 
 class that manages the movement between the different scenes,keeing the attached object.
 
@@ -165,11 +165,11 @@ Walkman prefab
 -usedWest:if you have already used the western cassette
 -usedfutur:if you have already used the western cassette
 
-#Walkman.cs
+# Walkman.cs
 
 Play the corresponding song for a few seconds and then move on to the next scene, according to the cassete you collied with.
 
-##Attached to 
+## Attached to 
 
 Walkman prefab
 
@@ -179,15 +179,15 @@ Walkman prefab
 -currentTape : Cassette that causes conflict with walkman
 -asource : in which the song is loaded from script
 
-#messagemanager.cs
+# messagemanager.cs
 
 Display the message box and start a monologue
 
-##Attached to
+## Attached to
 
 Canvas in the scene(UI)
 
-##Parameters
+## Parameters
 - messageText : text  for each display
 - allMessage : all texts for entire conversation
 - Movement : An action defined on SteamVR 
@@ -203,15 +203,15 @@ Canvas in the scene(UI)
 - isOneMessage : check if the one separated text was displayed
 - isEndMessage : check if all messages was displayed
 
-#managedissolve.cs
+# managedissolve.cs
 
 Change the value of the dissolve shader to make the avatar appear or disappear
 
-##Atached to 
+## Atached to 
 
 the objects to appear or disappear
 
-##Parameters
+## Parameters
 
 -rend : mesh renderer of the object
 -apparait : check if the object was appeard
@@ -222,16 +222,16 @@ the objects to appear or disappear
 -message : message to be displayed when appearing
 
 
-#introtrigger.cs
+# introtrigger.cs
 
 inherited from WhenGrabbed.
 Make the avatar appear when you first touch the walkman.
 
-##Atached to 
+## Atached to 
 
 Walkman prefab
 
-##Parameters
+## Parameters
 
 -isFirst : check if the first touch to walkman
 -dis : class for trigger the effect of show up
