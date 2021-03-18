@@ -128,3 +128,93 @@ Controller(left) and Controller(right), but only active in one of them
 - LaserPrefab : A reference to the Laser’s prefab
 
 
+#ZoneManager.cs
+
+class that manages the movement between the different scenes,keeing the attached object.
+
+## Attached to
+
+Walkman prefab
+
+## Parameters
+-zoneActuelle : indicate the actual scene(eighties, Western, fifties ,green)
+-used80: if you have already used the 80's cassette
+-usedWest:if you have already used the western cassette
+-usedfutur:if you have already used the western cassette
+
+#Walkman.cs
+
+Play the corresponding song for a few seconds and then move on to the next scene, according to the cassete you collied with.
+
+##Attached to 
+
+Walkman prefab
+
+## Parameters
+
+-zoneManager: Manage movement between scenes
+-currentTape : Cassette that causes conflict with walkman
+-asource : in which the song is loaded from script
+
+#messagemanager.cs
+
+Display the message box and start a monologue
+
+##Attached to
+
+Canvas in the scene(UI)
+
+##Parameters
+- messageText : text  for each display
+- allMessage : all texts for entire conversation
+- Movement : An action defined on SteamVR 
+- HandType : Right or Left Hand
+- splitString: string to separate the texts
+- splitMessage : separated texts 
+- messageNum : index for separated texts
+- textSpeed: speed message
+- elapsedTime
+- nowTextNum: number of actual text
+- clickIcon : image de clicl icon
+- clickFlashTime : time for flash
+- isOneMessage : check if the one separated text was displayed
+- isEndMessage : check if all messages was displayed
+
+#managedissolve.cs
+
+Change the value of the dissolve shader to make the avatar appear or disappear
+
+##Atached to 
+
+the objects to appear or disappear
+
+##Parameters
+
+-rend : mesh renderer of the object
+-apparait : check if the object was appeard
+-isfirsttouch : Save the first touch or not
+-effectObject: effect when appearing
+-offset : offset of position of the effect
+-messageScript: class messagemanager
+-message : message to be displayed when appearing
+
+
+#introtrigger.cs
+
+inherited from WhenGrabbed.
+Make the avatar appear when you first touch the walkman.
+
+##Atached to 
+
+Walkman prefab
+
+##Parameters
+
+-isFirst : check if the first touch to walkman
+-dis : class for trigger the effect of show up
+
+
+
+
+
+
