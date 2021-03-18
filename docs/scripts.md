@@ -127,6 +127,29 @@ Controller(left) and Controller(right), but only active in one of them
 - TeleportMask : A layer mask to filter the areas on which teleports are allowed
 - LaserPrefab : A reference to the Laser’s prefab
 
+# PlayingSynthesizer.cs
+
+Manages the interactions with the Synthesizer playing the defined song and making the cassette appear for the player.
+
+## Attached to
+
+Synthesizer prefab
+
+## Parameters
+
+- RightHand : A reference to the RightHand collider (not associated)
+- LeftHand : A reference to the LeftHand collider (not associated)
+- TimeLimit : 
+- FirstNote : AudioClip for the first note
+- Melody : AudioClip for the complete melody
+- Cassette : A reference to the Cassette script in the scene, can be easily changed to the GameObject instead.
+- Walkman : A reference to the Walkman's AudioSource component
+
+## Explanation
+
+The interaction uses the Collider associated with the Synthesizer prefab, if the Player Hands touch it twice within a time limit a song is played and a cassette appears, otherwise he needs to start again.
+
+
 
 #ZoneManager.cs
 
