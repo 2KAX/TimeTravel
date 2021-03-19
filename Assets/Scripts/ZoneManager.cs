@@ -14,6 +14,7 @@ public class ZoneManager : MonoBehaviour
     private static bool used80 = false;
     private static bool usedWest = false;
     private static bool usedfutur = false;
+    static bool existsInstance = false;
 
     public bool Used80
     {
@@ -45,14 +46,18 @@ public class ZoneManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (existsInstance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        existsInstance = true;
 
-
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-   
 
     }
 
