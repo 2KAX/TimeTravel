@@ -93,6 +93,7 @@ public class LaserPointer : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         // If the touchpad is held down…
+        //It only detects on the frame it is held, so we use a boolean to remember
         if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
         {
             isSelectingPoint = true;
@@ -105,7 +106,7 @@ public class LaserPointer : MonoBehaviour {
         }
         if (isSelectingPoint)
         {
-            laser.SetActive(true);
+            laser.SetActive(true); // we activated the laser if it was desactivated earlier because the laser hitted nothing
             RaycastHit hit;
             // Shoot a ray from the controller. If it hits something, make it store the point where it hit and show the laser.
             if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, Mathf.Infinity, teleportMask))
@@ -121,11 +122,10 @@ public class LaserPointer : MonoBehaviour {
             }
             else
             {
-                laser.SetActive(false);
+                laser.SetActive(false); // don't show the laser if it didn't hit anything
             }
         }
         // Teleports the player if the touchpad is released and there’s a valid teleport position.
-        //if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
         if (shouldTeleport&& ! isSelectingPoint)
         {
             Teleport();
