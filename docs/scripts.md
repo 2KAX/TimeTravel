@@ -271,6 +271,15 @@ Walkman prefab
 
 
 
+# Singleton.cs
+
+## Attached to
+
+Object that you only want to appear once in the game
+
+## Parametre
+
+-existsInstance : check if the object is already in the scene or not
 
 
 
