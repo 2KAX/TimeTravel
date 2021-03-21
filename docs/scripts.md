@@ -28,6 +28,10 @@ Scripts liés aux objets de la scène :
 
 * messagemanager.cs : script which display the conversation of the introduction.
 
+* managedissolve.cs : script which change the value of property of the dissolve shader.
+
+* introtrigger.cs : scripte let appear the futur detective.
+
 # ControllerGrabObject.cs
 
 This script manages the controls and interactions the user has with the headset controllers
