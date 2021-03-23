@@ -8,12 +8,12 @@ public class OuvrirCoffre : MonoBehaviour
 
     private void Start()
     {
-        anim = transform.GetComponent<Animation>();
+        anim = gameObject.GetComponent<Animation>();
     }
     private void OnTriggerEnter(Collider other)
     {
         //on déclenche l'animation d'ouverture du coffre lorsqu'il y a collision avec la clef
-        if(other.tag == "key")
+        if(other.tag == "Key")
         {
             anim.Play();
             Destroy(other.gameObject);
