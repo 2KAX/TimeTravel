@@ -142,17 +142,18 @@ Synthesizer prefab
 
 ## Parameters
 
-- RightHand : A reference to the RightHand collider (not associated)
-- LeftHand : A reference to the LeftHand collider (not associated)
-- TimeLimit : 
+- Timer : can be used to stop the music if the player isn't fast enough to play the whole music, and used to know if the first note was already played or isn't finished
+- TimerMusic : used to know if we have played the whole music or not
+- TimeLimit : must be longer than the first note, can be used with Timer to make this this task more difficult
 - FirstNote : AudioClip for the first note
 - Melody : AudioClip for the complete melody
-- Cassette : A reference to the Cassette script in the scene, can be easily changed to the GameObject instead.
-- Walkman : A reference to the Walkman's AudioSource component
+- Cassette : A reference to the GameObject Cassette in the scene.
+- asr : AudioSource associated to the synthesizer
 
 ## Explanation
 
 The interaction uses the Collider associated with the Synthesizer prefab, if the Player Hands touch it twice within a time limit a song is played and a cassette appears, otherwise he needs to start again.
+The Synthesizer must have a Collider and a RigidBody component, and the player's hands able to do the task must have the tag "Player" and a trigger collider, otherwise nothing happens.
 
 # tiroir.cs
 
