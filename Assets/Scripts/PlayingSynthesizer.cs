@@ -38,7 +38,6 @@ public class PlayingSynthesizer : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(TimerIsRunning && musicIsPlaying);
         if (TimerIsRunning)
         {
             // 2 - Si le timer est lancé alors on incrémente les timers.
@@ -58,7 +57,6 @@ public class PlayingSynthesizer : MonoBehaviour
         // 2 - S'il y a collision entre le synthé et les mains du joueur.
         if (other.CompareTag("Player"))
         {
-            Debug.Log("On veut jouer");
             // 2 - Si aucune note n'est jouée
             if (!TimerIsRunning)
             {
