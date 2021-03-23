@@ -4,8 +4,11 @@ using UnityEngine;
 
 // 2 - Ce script gère le moment où le joueur joue sur le synthé.
 
-public class PlayingSynthesizer : MonoBehaviour
-{
+public class PlayingSynthesizer : MonoBehaviour {
+    // 2 - Collider des controllers droites et gauches
+    public Collider RightHand;
+    public Collider LeftHand;
+
     // 2 - Les Timers et booléen associé
     private float timer = 0.0f;
     private float timerMusic = 0.0f;
@@ -18,9 +21,10 @@ public class PlayingSynthesizer : MonoBehaviour
     public AudioClip Melody; // 2 - La mélodie qui sera jouée.
 
     private bool musicIsPlaying = false; // 2 - Booléen
-    public GameObject cassette; // 2 - Une cassette a faire apparaitre
+    public GameObject cassette; // 2 - Une cassette
+    public AudioSource walkman; // 2 - AudioSource associé au Walkman
 
-    private AudioSource asr; // 2 - Une AudioSource associé au synthé.
+    private AudioSource asr; // 2 - Une AudioSource associé à la casette.
 
 
 
@@ -36,13 +40,26 @@ public class PlayingSynthesizer : MonoBehaviour
 
 
 
-    void Update()
-    {
+    void Update () {
+
         if (TimerIsRunning)
         {
             // 2 - Si le timer est lancé alors on incrémente les timers.
             timer += Time.deltaTime;
             timerMusic += Time.deltaTime;
+        }
+
+        if (timer > TimeLimit)
+        {
+            // 2 - Si les timers dépassent le seuil pré-défini.
+            asr.Stop();
+            walkman.Play();
+            // 2 - On reset les variables
+            timerMusic = 0;
+            asr.clip = FirstNote;
+            TimerIsRunning = false;
+            musicIsPlaying = false;
+            timer = 0.0f;
         }
 
         if (asr.clip == Melody && timerMusic > asr.clip.length)
@@ -55,10 +72,10 @@ public class PlayingSynthesizer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 2 - S'il y a collision entre le synthé et les mains du joueur.
-        if (other.CompareTag("Player"))
+        if(other == RightHand || other == LeftHand)
         {
             // 2 - Si aucune note n'est jouée
-            if (!TimerIsRunning)
+            if (!TimerIsRunning && !musicIsPlaying)
             {
                 TimerIsRunning = true;
                 asr.Play();
@@ -75,24 +92,11 @@ public class PlayingSynthesizer : MonoBehaviour
                     timerMusic = 0;
                     asr.Play();
                     musicIsPlaying = true;
+                    walkman.Stop();
                 }
-                timer = 0.0f; // 2 - On reset les variables
+                timer = 0.0f; // 2 - On reset les varibles
             }
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //S'il y avait collision entre le synthé et les mains du joueur.
-        if (other.CompareTag("Player"))
-        {
-            //Si on jouait la mélodie on la met en pause et on stoppe le timer
-            if (TimerIsRunning && musicIsPlaying)
-            {
-                TimerIsRunning = false;
-                asr.Pause();
-            }
-        }
+            
+        }  
     }
 }

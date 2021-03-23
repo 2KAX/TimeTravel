@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1011,7 +1011,6 @@ GameObject:
   - component: {fileID: 248972496}
   - component: {fileID: 248972501}
   - component: {fileID: 248972500}
-  - component: {fileID: 248972499}
   - component: {fileID: 248972498}
   - component: {fileID: 248972497}
   m_Layer: 0
@@ -1064,27 +1063,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.011601393, y: 0.007600645, z: 0.00085998786}
   m_Center: {x: 0.000004382096, y: 0.0023862463, z: -0.00013104691}
---- !u!114 &248972499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248972495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd7d64afade90549bda6cb9b9e73644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
-  onMusicChange:
-    m_PersistentCalls:
-      m_Calls: []
-  autresCassettes: []
-  zm: {fileID: 0}
-  tiroirs: []
-  isSelected: 0
-  asource: {fileID: 0}
 --- !u!23 &248972500
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2097,7 +2075,6 @@ GameObject:
   - component: {fileID: 561226916}
   - component: {fileID: 561226921}
   - component: {fileID: 561226920}
-  - component: {fileID: 561226919}
   - component: {fileID: 561226918}
   - component: {fileID: 561226917}
   m_Layer: 0
@@ -2150,27 +2127,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &561226919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 561226915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd7d64afade90549bda6cb9b9e73644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
-  onMusicChange:
-    m_PersistentCalls:
-      m_Calls: []
-  autresCassettes: []
-  zm: {fileID: 0}
-  tiroirs: []
-  isSelected: 0
-  asource: {fileID: 0}
 --- !u!23 &561226920
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4747,7 +4703,6 @@ GameObject:
   - component: {fileID: 1520020943}
   - component: {fileID: 1520020946}
   - component: {fileID: 1520020945}
-  - component: {fileID: 1520020944}
   m_Layer: 0
   m_Name: K7rock1971beatles_2050
   m_TagString: Untagged
@@ -4769,27 +4724,6 @@ Transform:
   m_Father: {fileID: 384654955}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1520020944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520020942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd7d64afade90549bda6cb9b9e73644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ac: {fileID: 0}
-  onMusicChange:
-    m_PersistentCalls:
-      m_Calls: []
-  autresCassettes: []
-  zm: {fileID: 0}
-  tiroirs: []
-  isSelected: 0
-  asource: {fileID: 0}
 --- !u!23 &1520020945
 MeshRenderer:
   m_ObjectHideFlags: 0
