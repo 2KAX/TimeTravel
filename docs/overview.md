@@ -21,9 +21,7 @@ On utilise cette cassette pour se téléporter dans la temporalité Western.
 
   **NB**: Script OuvrirCoffre (normalement) créé, mais pas ajouté à la scène. Vérifier qu'il existe dans l'autre version du projet.
 
-* Il peut aller dans le futur voir des arbres.
-
-  **NB**: scène créée mais transition non implémentée
+* Il peut aller dans le futur voir des arbres, une fois qu'il a planté la graine.
 
 ## La scène
 
@@ -42,9 +40,8 @@ Le choix du design est de faire tout à la main dans l'esprit de la game jam.
 
 ### Les trois époques
 
-**IDEA**: séparer ces trois époque dans des scènes différentes pour faciliter le développement. À creuser.
+Chaque époque est dans une scène différente.
 
-**NB**: Le choix d'avoir les trois lieux dans la scène permet de téléporter facilement par translation.
 
 Les différentes époques sont modélisées et gérées par la classe `ZoneManager`. Il est attaché au walkman.
 On y définit la classe Zone ainsi:
@@ -90,11 +87,9 @@ Les fonction ZoneManager.GoToX sont appelées par l'évènement onMusicChange de
 
 **IDEA**: Pour le moment, on ne se retéléporte pas dans le même monde car on empêche de jouer la même cassette deux fois de suite. On pourrait plutot vérifier dans les functions ZoneManager que on va dans une temporalité différente.
 
-**IDEA**: On peut simplifier ZoneManager.GoToX par une fonction ZoneManager.GoTo(Zone z) et choisir la bonne temporalité dans l'inspecteur Unity. 
-
 **IDEA**: Déplacer le code de téléportation dans classe walkman et de laisser en attribut de la cassette, la temporalité de destination. Cela permet de simplifier les états, et d'avoir tout dans le code et pas sur les objets.
 
-**NB**: Le walkman contient le code pour l'easter egg Buttlicker.
+**NB**: Le walkman contient le code pour l'easter egg Buttlicker. (3- ???)
 
 **TODO**: Fadeout lorsqu'on utilise une cassette
 
@@ -102,22 +97,12 @@ Les fonction ZoneManager.GoToX sont appelées par l'évènement onMusicChange de
 
 #### Synthétiseur
 
-Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique et démarre un timer. Durant ce temps imparti, il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse.
-
-**TODO**: Implémenter la mise en pause de la musique lorsque le joueur ne touche pas le piano. Pour le moment, la musique se joue d'elle même et la cassette apparaît dans tous les cas.
+Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique. Il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse. La musique se met en pause lorsque le joueur ne touche plus le synthé, avant de reprendre où il s'est arrêté lorsqu'il touche à nouveau le synthé. Il reste possible de jouer de la musique même lorsqu'on a déjà fait apparaître la cassette une fois, ce qui est logique car l'instrument de musique est toujours là, on peut donc la jouer en boucle même si c'est inutile.
 
 #### Destruction du mur avec de la dynamite
 
 Le script Dynamite prend en charge l'animation et la réapparition de la dynamite. Il déclenche aussi la fracturation du mur. La mèche commence à brûler lorsqu'on attrape la dynamite.
 La fracturation du mur est implémentée dans Fracturable. Il va ajouter une force sur les morceaux, et détruire le tout dès qu'il touche le sol.
-
-**NB**: S'assurer que la fonction Grab de la Dynamite est appelée pour déclencher la mèche.
-
-**IDEA**: La condition de destruction de l'objet est bizarre: parent (abstrait) qui touche le sol.
-
-**TODO**: Les scripts ne sont pas encore réattachés à la dynamite et au mur qui doit se casser, respectivement.
-
-**TODO**: S'assurer que l'objet garde sa vitesse lorsqu'on le lance, sinon il va tomber droit par terre.
 
 #### Tiroir inter-dimensionnel
 
@@ -141,11 +126,12 @@ Le script 80s/Drawer_constraint restreint la position du tiroir selon l'axe X ju
 
 #### Planter la graine
 
-**TODO**: Peut-être une animation, mais au moins un changement si on fait rentrer la graine dans le pot.
+Quand la graine est approché du pot, elle se déplace dedans et la partie verte de la graine dépasse du pot pour montrer qu'elle a été plantée, tout ça grâce au script
+PlanterGraine.
 
 ### Autres choses
 
-**TODO?**: Faire le dialogue d'introduction (cf. scénario) ainsi que l'avatar du soi futur.
+Faire le dialogue d'introduction (cf. scénario) ainsi que l'avatar du soi futur. Fait !
 
 **TODO?**: Écran de fin de jeu.
 

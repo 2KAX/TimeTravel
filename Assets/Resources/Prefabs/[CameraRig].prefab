@@ -171,7 +171,7 @@ MonoBehaviour:
   teleportReticlePrefab: {fileID: 1639319533735882, guid: cfb27f702a3af894b918c1816366ee19,
     type: 3}
   headTransform: {fileID: 8889483512464840517}
-  teleportReticleOffset: {x: 0, y: 0, z: 0}
+  teleportReticleOffset: {x: 0, y: 0.01, z: 0}
   teleportMask:
     serializedVersion: 2
     m_Bits: 256
