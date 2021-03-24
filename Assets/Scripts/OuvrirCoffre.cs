@@ -17,6 +17,7 @@ public class OuvrirCoffre : MonoBehaviour
         {
             anim.Play();
             Destroy(other.gameObject);
+            Destroy(this.gameObject); // While we don't have the animation
         }
     }
 }
