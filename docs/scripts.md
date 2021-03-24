@@ -210,7 +210,7 @@ Controller (left) and Controller (right) from the CameraRig
 
 # ZoneManager.cs
 
-class that manages the movement between the different scenes,keeing the attached object.
+class that manages the movement between the different scenes, keeping the attached object.
 
 ## Attached to
 
