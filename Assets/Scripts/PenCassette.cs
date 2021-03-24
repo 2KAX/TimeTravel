@@ -13,23 +13,18 @@ public class PenCassette : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(layermask);
-        Debug.Log("Patate");
-        Debug.Log(other.gameObject.layer);
-        
         if (other.gameObject.layer == layermask)// On détecte le Crayon
         {
             if (!HasBeenPenned)
             {
-                Debug.Log("PATATA");
                 //On active la cassette en changeant son Tag
                 transform.parent.tag = "K7future";
-                var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Rembobinage");
+                var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Rembobinage");//On joue le bruit de rembobinage
                 Rembodio = transform.parent.GetComponent<AudioSource>();
                 Rembodio.clip = musique;
                 Rembodio.Play();
             }
-            HasBeenPenned = true;
+            HasBeenPenned = true;//On empêche de retourner dans la boucle
         }
     }
 }
