@@ -18,6 +18,8 @@ Scripts liés aux objets de la scène :
 
 * Fracturable :  Cette classe fracturable gère la fracture du GameObject, principalement à l'aide de la classe Dynamite
 
+* PenCassette.cs : Permet d'activer la cassette du futur avec le crayon à papier en la rembobinant par derrière
+
 * PlayingSynthesizer : gérer le synthétiseur
 
 * PlanterGraine : permet de planter la graine dans les années 80 et de se tp à la fin du jeu, réagit au nom "Graine" de l'objet qui déclanche le trigger
@@ -131,6 +133,23 @@ Controller(left) and Controller(right), but only active in one of them
 - TeleportReticleOffset : Is the reticle offset from the floor, so there’s no “Z-fighting” with other surfaces
 - TeleportMask : A layer mask to filter the areas on which teleports are allowed
 - LaserPrefab : A reference to the Laser’s prefab
+# Pencassette.cs
+
+Manages the interaction between futureK7 and pen
+
+## Attached to
+
+Both triggers of K7FUTURE
+
+## Parameters 
+
+- HasBeenPenned : static variable used to know if the K7 is restored (the tag is back to normal)
+- layermask : int used to stock the layer of the pen
+- Rembodio : Audiosource of the sound of rewind
+
+## Explanation
+
+We use two trigger on the K7 to detect the pen when we try to rewind the k7 from the back. when a trigger with layer 30 (pen) is detected, we change the tag of the cassette(K7future) and change HasBeenPenned to true, so when it trigger another time it does nothing.
 
 # PlayingSynthesizer.cs
 
