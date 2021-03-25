@@ -128,7 +128,6 @@ GameObject:
   - component: {fileID: 8633351198339898417}
   - component: {fileID: 8633351198339898416}
   - component: {fileID: 8633351198339898422}
-  - component: {fileID: 581338473950394701}
   m_Layer: 0
   m_Name: K7rock1989queen_2050
   m_TagString: K7rock1989queen_2050
@@ -325,15 +324,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &581338473950394701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8633351198339898431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c0eb17c639b7b429320bfaa5fa1ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

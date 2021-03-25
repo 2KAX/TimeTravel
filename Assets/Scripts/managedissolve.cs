@@ -7,7 +7,7 @@ public class managedissolve : MonoBehaviour
     Renderer rend;
     float r = 1;
 
-    bool apparait = false;
+   public static  bool apparait = false;
 
     public static bool isfirsttouch = false;
 
