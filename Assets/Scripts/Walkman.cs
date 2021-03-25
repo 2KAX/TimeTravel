@@ -66,7 +66,7 @@ public class Walkman : MonoBehaviour
                 break;
 
             case "K7farWest":
-                AudioClip musiquewestern = (AudioClip)Resources.Load<AudioClip>("Audio/the-back-to-the-future");
+                AudioClip musiquewestern = (AudioClip)Resources.Load<AudioClip>("Audio/the_entertainment");
                 asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquewestern;
                 if (!zoneManager.Usedwest) zoneManager.Usedwest = true;
