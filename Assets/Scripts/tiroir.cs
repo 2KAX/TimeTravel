@@ -33,7 +33,11 @@ public class tiroir : MonoBehaviour
     // Adds DontDestroyOnLoad for all objects inside the Drawer
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.parent = null;
-        DontDestroyOnLoad(other.gameObject);
+        if (other.tag != "Player")
+        {
+            other.gameObject.transform.parent = null;
+            DontDestroyOnLoad(other.gameObject);
+            Debug.Log(other.name);
+        }
     }
 }
