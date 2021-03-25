@@ -21,8 +21,11 @@ public class Fracturable : MonoBehaviour
         foreach (Transform child in transform)
 		{
             Rigidbody rb = child.GetComponent<Rigidbody>();
-			rb.isKinematic = true;
-			rbs.Add(rb);		
+			if (rb != null)
+			{
+				rb.isKinematic = true;
+				rbs.Add(rb);
+			}
 		}
 	}
 

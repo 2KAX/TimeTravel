@@ -18,7 +18,7 @@ public class PenCassette : MonoBehaviour
             if (!HasBeenPenned)
             {
                 //On active la cassette en changeant son Tag
-                transform.parent.tag = "K7future";
+                transform.parent.tag = "K7rock1989queen_2050";
                 var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Rembobinage");//On joue le bruit de rembobinage
                 Rembodio = transform.parent.GetComponent<AudioSource>();
                 Rembodio.clip = musique;

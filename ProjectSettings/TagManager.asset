@@ -10,6 +10,7 @@ TagManager:
   - K7future
   - K7rock1989queen_2050
   - K7farWest
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -41,7 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Pen
   - 
   m_SortingLayers:
   - name: Default
