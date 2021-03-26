@@ -139,7 +139,7 @@ Manages the interaction between futureK7 and pen
 
 ## Attached to
 
-Both triggers of K7FUTURE
+Both GameObject "trigger" of the tape 80's
 
 ## Parameters 
 
@@ -180,18 +180,18 @@ When the player teleports between the different times, it follows keeping everyt
 ## Attached to
 
 drawer, drawer80s, drawer2050 and drawer2050 (from the green future).
-Also found references in the K7farWest, the K7future and the Kyrick1998queen_2050.
+Also found references in the K7farWest, the K7future, the Kyrick1998queen_2050 and the script Walkman.cs.
 We can probably remove the references in the K7 with the removal of the Cassette.cs script.
 
 ## Parameters
-
+- GoContained : A static list of GameObjects contained in the drawer 
 - autresTiroirs : A list of all the other drawers
 - Zm : A reference to the zoneManager.
 - ZoneTiroir : The zone the drawer corresponds to.
 
 ## Explanation
 
-Teleports all the hierarchical children of the correspondent drawer to the new zone.
+Teleports all the objects contained in the drawer to the new zone by duplicating them and then destroy the first objet in order not to keep the DontDestroyOnLoad.
 
 # TurnCamera.cs
 
