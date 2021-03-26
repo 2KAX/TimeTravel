@@ -106,11 +106,11 @@ public class Walkman : MonoBehaviour
         {
             DontDestroyOnLoad(GameObject.Find("K7farWest"));
         }
-        if (Tir.GoCont != null)
+        if (Tir.GoCont != null)//Dans le cas où la liste des objets contenus dans le tiroir est non nulle 
         {
-            foreach (GameObject go in Tir.GoCont)
+            foreach (GameObject go in Tir.GoCont)//On parcourt tous les objets, on set leurs parents à nul pour utiliser le DontDestroyOnLoad
             {
-                go.transform.parent = null;
+                go.transform.parent = null;// !!! ICI  !!! ça peut poser problème pour la TP de la cassette 80's qui dispose de trigger sur elle par exemple...
                 DontDestroyOnLoad(go);
             }
         }

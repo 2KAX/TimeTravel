@@ -11,30 +11,35 @@ public class tiroir : MonoBehaviour
     public tiroir[] autresTiroirs;
     // 2 - Variables qui contrôle la zone dans laquelle on est.
     public ZoneManager zm;
-    public static List<GameObject> GoContained = new List<GameObject>();
+    public static List<GameObject> GoContained = new List<GameObject>(); //Liste des gameObject contenus dans le tiroir
     public ourZone zoneTiroir;
     public List<GameObject> GoCont
     {
         get{ return GoContained; }
     }
-    public void Awake()
+    public void Awake()//Lors du lancement d'une autre scène on lance le Awake afin de "TP" les objets contenus dans le tiroir
     {
         foreach(GameObject Go in GoContained)
         {
             DestroyandCreate(Go);
         }
-        GoContained.Clear();
+        GoContained.Clear();//On clear la Liste une fois que tous les éléments ont été ajouté dans la scène
 
     }
-    public void DestroyandCreate(GameObject Go)
+    public void DestroyandCreate(GameObject Go)//Permet au lancement du Awake de créer un clone de l'objet présent dans le tiroir puis de détruire l'objet
     {
         Debug.Log(Go);
         if (ZoneManager.zoneActuelle == ourZone.eighties)
         {
-            GameObject.Instantiate(Go, new Vector3(-1.732f,1.02f,-0.9f), Go.transform.rotation);
+            GameObject.Instantiate(Go, new Vector3(-1.732f, 1.02f, -0.9f), Go.transform.rotation);//On instancie au dessus du tiroir pour éviter des problèmes collision 
+            //lorsque l'on tire le tiroir
         }
-        else { GameObject.Instantiate(Go, transform.position, Go.transform.rotation); }
-        GameObject.Destroy(Go);
+        else
+        {
+
+            GameObject.Instantiate(Go, transform.position, Go.transform.rotation); //Création d'un clone de l'objet
+        }
+        GameObject.Destroy(Go);//On détruit l'objet initial afin de le supprimer de DontDestroyOnLoad 
     }
     public void registerChildren(Transform tr)
     {
@@ -52,25 +57,21 @@ public class tiroir : MonoBehaviour
             }
         }
     }
-
-    // Adds DontDestroyOnLoad for all objects inside the Drawer
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)//Lorsqu'un objet entre dans le tiroir on l'ajoute à la liste des objets contenus dans le tiroir
     {
-        if (other.tag != "Player" && !GoContained.Contains(other.gameObject))
+        if (other.tag != "Player" && !GoContained.Contains(other.gameObject))//On évite de mettre les mains dans le tiroir et les objets qui y sont déjà
         {
-            //other.gameObject.transform.parent = null;
-           // DontDestroyOnLoad(other.gameObject);
             GoContained.Add(other.gameObject);
             Debug.Log(other.name);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)//Lorsqu'un objet sort du tiroir, il est retiré de la liste s'il est dedans.
     {
-        //if (GoContained.Contains(other.gameObject))
-        //{
-         //   GoContained.Remove(other.gameObject);
+        if (GoContained.Contains(other.gameObject))
+        {
+            GoContained.Remove(other.gameObject);
 
-      //  }
+        }
     }
 }
