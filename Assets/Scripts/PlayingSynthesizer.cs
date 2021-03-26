@@ -7,17 +7,15 @@ using UnityEngine;
 public class PlayingSynthesizer : MonoBehaviour
 {
     // 2 - Les Timers et booléen associé
-    private float timer = 0.0f;
     private float timerMusic = 0.0f;
-    public float TimeLimit = 2.0f;
     private bool TimerIsRunning = false;
+    private bool FirstNotePlayed = false;
 
     // 2 - Les AudioClips (Clip)
     // TODO : On peut essayer de les récupérer de façon automatique dans le Start
     public AudioClip FirstNote; // 2 - La première note à jouer.
     public AudioClip Melody; // 2 - La mélodie qui sera jouée.
 
-    private bool musicIsPlaying = false; // 2 - Booléen
     public GameObject cassette; // 2 - Une cassette a faire apparaitre
 
     private AudioSource asr; // 2 - Une AudioSource associé au synthé.
@@ -40,8 +38,7 @@ public class PlayingSynthesizer : MonoBehaviour
     {
         if (TimerIsRunning)
         {
-            // 2 - Si le timer est lancé alors on incrémente les timers.
-            timer += Time.deltaTime;
+            // 2 - Si le timer est lancé alors on incrémente le timer.
             timerMusic += Time.deltaTime;
         }
 
@@ -57,28 +54,14 @@ public class PlayingSynthesizer : MonoBehaviour
         // 2 - S'il y a collision entre le synthé et les mains du joueur.
         if (other.CompareTag("Player"))
         {
-            // 2 - Si aucune note n'est jouée
-            if (!TimerIsRunning)
+            if (asr.clip.length <= 2f && FirstNotePlayed)
             {
-                TimerIsRunning = true;
-                asr.Play();
+                asr.clip = Melody;
+                timerMusic = 0;
             }
-
-            // 2 - Si on joue déjà et que le timer n'est pas terminé.
-            else if (TimerIsRunning && timer < TimeLimit)
-            {
-                // 2 - Si aucune musique n'est jouée
-                if (!musicIsPlaying)
-                {
-                    // 2 - On lance la mélodie
-                    asr.clip = Melody;
-                    timerMusic = 0;
-                    asr.Play();
-                    musicIsPlaying = true;
-                }
-                timer = 0.0f; // 2 - On reset les variables
-            }
-
+            asr.Play();
+            TimerIsRunning = true;
+            FirstNotePlayed = true;
         }
     }
 
@@ -87,12 +70,9 @@ public class PlayingSynthesizer : MonoBehaviour
         //S'il y avait collision entre le synthé et les mains du joueur.
         if (other.CompareTag("Player"))
         {
-            //Si on jouait la mélodie on la met en pause et on stoppe le timer
-            if (TimerIsRunning && musicIsPlaying)
-            {
-                TimerIsRunning = false;
-                asr.Pause();
-            }
+            //On met la mélodie en pause et on stoppe le timer
+            asr.Pause();
+            TimerIsRunning = false;
         }
     }
 }

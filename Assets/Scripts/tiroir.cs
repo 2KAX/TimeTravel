@@ -11,8 +11,31 @@ public class tiroir : MonoBehaviour
     public tiroir[] autresTiroirs;
     // 2 - Variables qui contrôle la zone dans laquelle on est.
     public ZoneManager zm;
+    public static List<GameObject> GoContained = new List<GameObject>();
     public ourZone zoneTiroir;
+    public List<GameObject> GoCont
+    {
+        get{ return GoContained; }
+    }
+    public void Awake()
+    {
+        foreach(GameObject Go in GoContained)
+        {
+            DestroyandCreate(Go);
+        }
+        GoContained.Clear();
 
+    }
+    public void DestroyandCreate(GameObject Go)
+    {
+        Debug.Log(Go);
+        if (ZoneManager.zoneActuelle == ourZone.eighties)
+        {
+            GameObject.Instantiate(Go, new Vector3(-1.732f,1.02f,-0.9f), Go.transform.rotation);
+        }
+        else { GameObject.Instantiate(Go, transform.position, Go.transform.rotation); }
+        GameObject.Destroy(Go);
+    }
     public void registerChildren(Transform tr)
     {
         // 2 - Cette fonction permet de créer le déplacement entre les temporalités du tiroir.
@@ -33,7 +56,21 @@ public class tiroir : MonoBehaviour
     // Adds DontDestroyOnLoad for all objects inside the Drawer
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.parent = null;
-        DontDestroyOnLoad(other.gameObject);
+        if (other.tag != "Player" && !GoContained.Contains(other.gameObject))
+        {
+            //other.gameObject.transform.parent = null;
+           // DontDestroyOnLoad(other.gameObject);
+            GoContained.Add(other.gameObject);
+            Debug.Log(other.name);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //if (GoContained.Contains(other.gameObject))
+        //{
+         //   GoContained.Remove(other.gameObject);
+
+      //  }
     }
 }
