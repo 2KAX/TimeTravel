@@ -74,4 +74,27 @@ public class tiroir : MonoBehaviour
 
         }
     }
+
+    public void RemoveChild()// Méthode récursive pour enlever les enfant d'objets qui triggerait le trigger du tiroir
+    {
+        List<GameObject> Lg= new List<GameObject>(GoContained);//On copie GoContained pour éviter de la modifier dans le foreach
+ 
+        foreach(GameObject Go in GoContained)
+        {
+            RemoveChild(Go,Lg);
+        }
+        GoContained = Lg;//Après avoir modifier Lg et enlever tous les enfants on assigne GoContained à Lg
+    }
+    private void RemoveChild(GameObject Go, List<GameObject> Lg)// Cette fonction s'appelle elle même afin de parcourir l'arborescence des enfant d'un gameObject
+        //supposé parent elle supprime tous les enfants d'un gameObject de la liste Lg si cet enfant est compris dedans.
+    {
+        for (int i = 0; i < Go.transform.childCount; i++)
+        {
+            RemoveChild(Go.transform.GetChild(i).gameObject,Lg);
+            if (GoContained.Contains(Go.transform.GetChild(i).gameObject))
+            {
+                Lg.Remove(Go.transform.GetChild(i).gameObject);
+            }
+        }
+    }
 }
