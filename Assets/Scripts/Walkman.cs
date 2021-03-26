@@ -8,6 +8,7 @@ public class Walkman : MonoBehaviour
     private ourZone zoneActuelle;
     private GameObject currentTape;
     private AudioSource asource;
+    private tiroir Tir;
 
 
   
@@ -17,6 +18,18 @@ public class Walkman : MonoBehaviour
     {
         zoneManager = GetComponent<ZoneManager>();
         zoneActuelle = ZoneManager.zoneActuelle;
+        switch (zoneActuelle)
+        {
+            case ourZone.eighties:
+                Tir = GameObject.Find("drawer80s").GetComponent<tiroir>();
+                break;
+            case ourZone.fifties:
+                Tir = GameObject.Find("drawer2050").GetComponent<tiroir>();
+                break;
+            case ourZone.Western:
+                Tir = GameObject.Find("Triggertiroir").GetComponent<tiroir>();
+                break;
+        }
     }
 
   void OnCollisionEnter(Collision collision)
@@ -93,10 +106,17 @@ public class Walkman : MonoBehaviour
         {
             DontDestroyOnLoad(GameObject.Find("K7farWest"));
         }
-
-
+        if (Tir.GoCont != null)
+        {
+            foreach (GameObject go in Tir.GoCont)
+            {
+                go.transform.parent = null;
+                DontDestroyOnLoad(go);
+            }
+        }
         switch (currentTape.name)
         {
+ 
             case "K7rock1989queen_2050":
                 zoneManager.GoToA();
                 break;
