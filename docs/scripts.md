@@ -161,9 +161,7 @@ Synthesizer prefab
 
 ## Parameters
 
-- Timer : can be used to stop the music if the player isn't fast enough to play the whole music, and used to know if the first note was already played or isn't finished
 - TimerMusic : used to know if we have played the whole music or not
-- TimeLimit : must be longer than the first note, can be used with Timer to make this this task more difficult
 - FirstNote : AudioClip for the first note
 - Melody : AudioClip for the complete melody
 - Cassette : A reference to the GameObject Cassette in the scene.
