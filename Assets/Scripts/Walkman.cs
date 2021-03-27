@@ -60,7 +60,7 @@ public class Walkman : MonoBehaviour
     IEnumerator PlaySongCoroutine()
     {
         Debug.Log("Song started !");
-        switch (currentTape.name) // 2 - Cassette Actuelle  
+        switch (currentTape.tag) // 2 - Cassette Actuelle  
         {
 
             case "K7rock1989queen_2050":
@@ -115,7 +115,8 @@ public class Walkman : MonoBehaviour
                 DontDestroyOnLoad(go);
             }
         }
-        switch (currentTape.name)
+        Debug.Log(currentTape.name);
+        switch (currentTape.tag)
         {
  
             case "K7rock1989queen_2050":
