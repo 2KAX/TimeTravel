@@ -96,7 +96,10 @@ public class Walkman : MonoBehaviour
 
         if (zoneManager.Used80)
         {
-            DontDestroyOnLoad(GameObject.Find("K7rock1989queen_2050"));
+            if (GameObject.Find("K7rock1989queen_2050(Clone)") != null)
+            {
+                DontDestroyOnLoad(GameObject.Find("K7rock1989queen_2050(Clone)"));
+            }
         }
         if (zoneManager.Usedfutur)
         {
