@@ -13,7 +13,7 @@ Ajouter le projet dans Unity Hub et lancez-le. Nos scripts sont dans `Scripts`, 
 * Rapports des années précédentes qui détaillent le scénario, les fonctionalités qui devraient être ajoutées, les bugs, etc… : ["G1 - Time Travel 2019.pdf"](https://github.com/MichelQu/TimeTravel/blob/3731b56716ae27b97d2aaadbef9642a4885d75bb/G1%20-%20Time%20Travel%202019.pdf) (2019), 2020 ["Time-Travel-2020.pdf"](https://github.com/Aioshiro/TimeTravel/blob/master/Time-Travel-2020.pdf) et 2021 (à venir.)
 
 * [Vue d'ensemble des scripts](docs/scripts.md)
-* [Overview rapide du projet] (docs/overview.md)
+* [Overview rapide du projet](docs/overview.md)
 
 ## À propos
 
