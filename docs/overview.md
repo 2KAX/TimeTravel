@@ -13,23 +13,19 @@ On utilise cette cassette pour se téléporter dans la temporalité Western.
 
 * Le joueur détruit un mur fissuré avec de la dynamite. Il trouve la clé du coffre-fort. Il retourne dans le futur pour trouver la cassette années '80.
 
-* Il place la cassette non-rembobinée dans le tiroir inter-dimensionnel, et retourne dans le western. Il la rembobine avec un crayon (**TODO**), place la clé dans le tiroir et se téléporte dans les années '80.
+* Il place la cassette non-rembobinée dans le tiroir inter-dimensionnel, et retourne dans le western. Il la rembobine avec un crayon, place la clé dans le tiroir et se téléporte dans les années '80.
 
-  **NB**: L'énigme du rembobinage n'a pas été faite par manque de temps.
+* Il récupère la clé, ouvre le coffre, prend la graine et la plante .
 
-* Il récupère la clé, ouvre le coffre, prend la graine et la plante (**TODO**).
+  **NB**: L'animation du coffre est dans les assets, mais pas implémentée, le coffre juste disparait
 
-  **NB**: Script OuvrirCoffre (normalement) créé, mais pas ajouté à la scène. Vérifier qu'il existe dans l'autre version du projet.
-
-* Il peut aller dans le futur voir des arbres.
-
-  **NB**: scène créée mais transition non implémentée
+* Il peut aller dans le futur voir des arbres, une fois qu'il a planté la graine.
 
 ## La scène
 
 Le jeu se déroule dans 3 époques différentes: Western, années '80 et années 2050 futuriste.
 
-Dans la scène, ces trois environnements sont représentés par des préfabs: _Western_ et _Point Light_ constituent l'espace Western, _80s_large_pour les années '80 et _2050_ … pour le temps 2050
+Une scène est présente pour chaque environnement.
 
 _Sun_Lamp_ s'applique partout puisque c'est une lumière directionnelle.
 _[CameraRig]_ et _[SteamVR]_ proviennent de SteamVR.
@@ -42,9 +38,8 @@ Le choix du design est de faire tout à la main dans l'esprit de la game jam.
 
 ### Les trois époques
 
-**IDEA**: séparer ces trois époque dans des scènes différentes pour faciliter le développement. À creuser.
+Chaque époque est dans une scène différente.
 
-**NB**: Le choix d'avoir les trois lieux dans la scène permet de téléporter facilement par translation.
 
 Les différentes époques sont modélisées et gérées par la classe `ZoneManager`. Il est attaché au walkman.
 On y définit la classe Zone ainsi:
@@ -86,46 +81,22 @@ Le walkman entre en collision avec la cassette. Celle-ci entre dans le walkman, 
 
 Les fonction ZoneManager.GoToX sont appelées par l'évènement onMusicChange de chaque cassette.
 
-**IDEA**: Pour le moment, c'est la cassette qui joue la musique. Un essai a été commencé de déplacer la musique dans la classe walkman. Je propose qu'on laisse la cassette avoir sa musique, et que le walkman récupère le fichier de cette musique pour la jouer.
-
-**IDEA**: Pour le moment, on ne se retéléporte pas dans le même monde car on empêche de jouer la même cassette deux fois de suite. On pourrait plutot vérifier dans les functions ZoneManager que on va dans une temporalité différente.
-
-**IDEA**: On peut simplifier ZoneManager.GoToX par une fonction ZoneManager.GoTo(Zone z) et choisir la bonne temporalité dans l'inspecteur Unity. 
-
-**IDEA**: Déplacer le code de téléportation dans classe walkman et de laisser en attribut de la cassette, la temporalité de destination. Cela permet de simplifier les états, et d'avoir tout dans le code et pas sur les objets.
-
-**NB**: Le walkman contient le code pour l'easter egg Buttlicker.
-
 **TODO**: Fadeout lorsqu'on utilise une cassette
 
 **TODO?**: Bruit de cassette abîmé pour les mauvaises.
 
 #### Synthétiseur
 
-Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique et démarre un timer. Durant ce temps imparti, il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse.
-
-**TODO**: Implémenter la mise en pause de la musique lorsque le joueur ne touche pas le piano. Pour le moment, la musique se joue d'elle même et la cassette apparaît dans tous les cas.
+Lorsqu'on touche le synthé pour la première fois, il joue la première note de la musique. Il faut finir la mélodie en posant ses mains sur le piano pour que la cassette apparaisse. La musique se met en pause lorsque le joueur ne touche plus le synthé, avant de reprendre où il s'est arrêté lorsqu'il touche à nouveau le synthé. Il reste possible de jouer de la musique même lorsqu'on a déjà fait apparaître la cassette une fois, ce qui est logique car l'instrument de musique est toujours là, on peut donc la jouer en boucle même si c'est inutile.
 
 #### Destruction du mur avec de la dynamite
 
 Le script Dynamite prend en charge l'animation et la réapparition de la dynamite. Il déclenche aussi la fracturation du mur. La mèche commence à brûler lorsqu'on attrape la dynamite.
 La fracturation du mur est implémentée dans Fracturable. Il va ajouter une force sur les morceaux, et détruire le tout dès qu'il touche le sol.
 
-**NB**: S'assurer que la fonction Grab de la Dynamite est appelée pour déclencher la mèche.
-
-**IDEA**: La condition de destruction de l'objet est bizarre: parent (abstrait) qui touche le sol.
-
-**TODO**: Les scripts ne sont pas encore réattachés à la dynamite et au mur qui doit se casser, respectivement.
-
-**TODO**: S'assurer que l'objet garde sa vitesse lorsqu'on le lance, sinon il va tomber droit par terre.
-
 #### Tiroir inter-dimensionnel
 
 Le script tiroir expose une fonction qui permet de récupérer ses enfants pour les déplacer lorsqu'on change d'époque.
-
-**NB**: Je n'arrive pas à trouver où cette fonction est utilisée. (**TODO**)
-
-**TODO**: Il manquerait alors une méthode pour placer des objets dans le tiroir ?
 
 Le script 80s/Drawer_constraint restreint la position du tiroir selon l'axe X jusqu'à une position d'arrêt. Il est uniquement appliqué sur le tiroir des années '80.
 
@@ -133,21 +104,20 @@ Le script 80s/Drawer_constraint restreint la position du tiroir selon l'axe X ju
 
 #### Rembobinage au crayon
 
-**TODO**: Faire le crayon, le mettre en valeur. L’interaction pour rembobiner une cassette.
+L'interaction marche, **TODO** : trouver un moyen de la mettre plus en valeur, pour que le joueur sache qu'il faut faire ça.
 
 #### Ouverture du coffre
 
-**TODO**: À faire, inspiré du script OuvrirCoffre (qui existe quelque part)
+**TODO**: rajouter l'animation d'ouverture du coffre quand la clé est insérée.
 
 #### Planter la graine
 
-**TODO**: Peut-être une animation, mais au moins un changement si on fait rentrer la graine dans le pot.
+Quand la graine est approché du pot, elle se déplace dedans et la partie verte de la graine dépasse du pot pour montrer qu'elle a été plantée, tout ça grâce au script
+PlanterGraine.
 
 ### Autres choses
 
-**TODO?**: Faire le dialogue d'introduction (cf. scénario) ainsi que l'avatar du soi futur.
-
-**TODO?**: Écran de fin de jeu.
+**TODO?**: Écran de fin de jeu à améliorer.
 
 ---
 

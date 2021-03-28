@@ -5,7 +5,7 @@ using Valve.VR;
 
 public class LaserPointer : MonoBehaviour {
 
-    private SteamVR_TrackedObject trackedObj;
+    private GameObject trackedObj;
     public SteamVR_Action_Boolean Movement;
     public SteamVR_Input_Sources handType;
 
@@ -31,11 +31,6 @@ public class LaserPointer : MonoBehaviour {
     public LayerMask teleportMask;
     // Is set to true when a valid teleport location is found.
     private bool shouldTeleport;
-
-    void Awake()
-    {
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
-    }
     // This is a reference to the Laser’s prefab.
     public GameObject laserPrefab;
     //"laser" stores a reference to an instance of the laser.
@@ -44,13 +39,32 @@ public class LaserPointer : MonoBehaviour {
     private Transform laserTransform;
     // This is the position where the laser hits.
     private Vector3 hitPoint;
+    //To know if he used his stick
+    private bool isSelectingPoint;
     // Use this for initialization
+
+    private void Start()
+    {
+        // Spawn a new laser and save a reference to it in laser.
+        laser = Instantiate(laserPrefab);
+        // Store the laser’s transform component.
+        laserTransform = laser.transform;
+        // Spawn a new reticle and save a reference to it in reticle.
+        reticle = Instantiate(teleportReticlePrefab);
+        // Store the reticle’s transform component.
+        teleportReticleTransform = reticle.transform;
+    }
+
+    void Awake()
+    {
+        trackedObj = this.gameObject;
+    }
 
     private void ShowLaser(RaycastHit hit)
     {
         // Show the laser & hide the reticule in the absence of a valid target.
-        laser.SetActive(true);
-        reticle.SetActive(false);
+        //laser.SetActive(true);
+        //reticle.SetActive(false);
         // Position the laser between the controller and the point where the raycast hits. You use Lerp because you can give it two positions and the percent it should travel. 
         //If you pass it 0.5f, which is 50%, it returns the precise middle point.
         laserTransform.position = Vector3.Lerp(trackedObj.transform.position, hitPoint, .5f);
@@ -75,28 +89,27 @@ public class LaserPointer : MonoBehaviour {
         // Without the difference, the player would teleport to an incorrect location.
         cameraRigTransform.position = hitPoint + difference;
     }
-    private void Start()
-    {
-        // Spawn a new laser and save a reference to it in laser.
-        laser = Instantiate(laserPrefab);
-        // Store the laser’s transform component.
-        laserTransform = laser.transform;
 
-        // Spawn a new reticle and save a reference to it in reticle.
-        reticle = Instantiate(teleportReticlePrefab);
-        // Store the reticle’s transform component.
-        teleportReticleTransform = reticle.transform;
-    }
     // Update is called once per frame
     void Update () {
         // If the touchpad is held down…
-        //if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
-        if (Movement.GetStateDown(handType))
+        //It only detects on the frame it is held, so we use a boolean to remember
+        if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
         {
+            isSelectingPoint = true;
+            laser.SetActive(true);
+        }
+        if (SteamVR_Actions._default.Teleport.GetStateUp(handType)) // Hide the laser when the player released the touchpad.
+        {
+            isSelectingPoint = false;
+            laser.SetActive(false);
+        }
+        if (isSelectingPoint)
+        {
+            laser.SetActive(true); // we activated the laser if it was desactivated earlier because the laser hitted nothing
             RaycastHit hit;
-
             // Shoot a ray from the controller. If it hits something, make it store the point where it hit and show the laser.
-            if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, 100, teleportMask))
+            if (Physics.Raycast(trackedObj.transform.position, transform.forward, out hit, Mathf.Infinity, teleportMask))
             {
                 hitPoint = hit.point;
                 ShowLaser(hit);
@@ -107,14 +120,13 @@ public class LaserPointer : MonoBehaviour {
                 // Set shouldTeleport to true to indicate the script found a valid position for teleporting.
                 shouldTeleport = true;
             }
-        }
-        else // Hide the laser when the player released the touchpad.
-        {
-            laser.SetActive(false);
+            else
+            {
+                laser.SetActive(false); // don't show the laser if it didn't hit anything
+            }
         }
         // Teleports the player if the touchpad is released and there’s a valid teleport position.
-        //if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
-        if (Movement.GetStateUp(handType))
+        if (shouldTeleport&& ! isSelectingPoint)
         {
             Teleport();
         }

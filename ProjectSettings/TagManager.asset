@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Walkman
+  - brickWall
+  - BombExplodes
+  - K7future
+  - K7rock1989queen_2050
+  - K7farWest
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -13,6 +20,7 @@ TagManager:
   - UI
   - 
   - 
+  - Floor
   - 
   - 
   - 
@@ -34,8 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Pen
   - 
   m_SortingLayers:
   - name: Default
