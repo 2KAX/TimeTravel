@@ -6,7 +6,7 @@ Version courte qui met l'accent sur les interactions du jeu, pour la version lon
 
 Le joueur est d'abord dans la temporalité années '80.
 
-* Son soi futur l'invite à venir voir les dégâts de la pollution (**TODO**):  il joue la cassette avec le walkman pour se téléporter dans le futur.
+* Son soi futur l'invite à venir voir les dégâts de la pollution:  il joue la cassette avec le walkman pour se téléporter dans le futur.
 
 * Il joue une musique western sur le synthétiseur, qui fait apparaître une cassette.
 On utilise cette cassette pour se téléporter dans la temporalité Western.
@@ -25,7 +25,7 @@ On utilise cette cassette pour se téléporter dans la temporalité Western.
 
 Le jeu se déroule dans 3 époques différentes: Western, années '80 et années 2050 futuriste.
 
-Une scène est présente pour chaque environnement.
+Une scène est présente pour chaque environnement. Il y a de plus une scène finale pour le futur corrigé, mais elle ne fait pas véritablement partie du jeu, elle est purement scénaristique.
 
 _Sun_Lamp_ s'applique partout puisque c'est une lumière directionnelle.
 _[CameraRig]_ et _[SteamVR]_ proviennent de SteamVR.
@@ -56,9 +56,11 @@ Ce script expose les fonctions `GoToX` qui permettent de téléporter le joueur 
 
 Les commentaires de la forme `// 2 -` ont été ajoutés par le deuxième groupe de projet (2020). À cause du coronavirus, nous n'avons pas eu le temps de faire grand chose.
 
+Ce format de commentaires n'a pas été suivi l'année d'après (2021).
+
 ## Comportements et fonctionalités
 
-Dans cette section, on décrit le comportement des scripts.
+Dans cette section, on décrit le comportement de certains scripts essentiels au scénario. Pour la description complète de chaque script, se référer au document scripts.md.
 
 ### Joueur
 #### Déplacements
