@@ -13,13 +13,11 @@ On utilise cette cassette pour se téléporter dans la temporalité Western.
 
 * Le joueur détruit un mur fissuré avec de la dynamite. Il trouve la clé du coffre-fort. Il retourne dans le futur pour trouver la cassette années '80.
 
-* Il place la cassette non-rembobinée dans le tiroir inter-dimensionnel, et retourne dans le western. Il la rembobine avec un crayon (**TODO**), place la clé dans le tiroir et se téléporte dans les années '80.
+* Il place la cassette non-rembobinée dans le tiroir inter-dimensionnel, et retourne dans le western. Il la rembobine avec un crayon, place la clé dans le tiroir et se téléporte dans les années '80.
 
-  **NB**: L'énigme du rembobinage n'a pas été faite par manque de temps.
+* Il récupère la clé, ouvre le coffre, prend la graine et la plante .
 
-* Il récupère la clé, ouvre le coffre, prend la graine et la plante (**TODO**).
-
-  **NB**: Script OuvrirCoffre (normalement) créé, mais pas ajouté à la scène. Vérifier qu'il existe dans l'autre version du projet.
+  **NB**: L'animation du coffre est dans les assets, mais pas implémentée, le coffre juste disparait
 
 * Il peut aller dans le futur voir des arbres, une fois qu'il a planté la graine.
 
@@ -27,7 +25,7 @@ On utilise cette cassette pour se téléporter dans la temporalité Western.
 
 Le jeu se déroule dans 3 époques différentes: Western, années '80 et années 2050 futuriste.
 
-Dans la scène, ces trois environnements sont représentés par des préfabs: _Western_ et _Point Light_ constituent l'espace Western, _80s_large_pour les années '80 et _2050_ … pour le temps 2050
+Une scène est présente pour chaque environnement.
 
 _Sun_Lamp_ s'applique partout puisque c'est une lumière directionnelle.
 _[CameraRig]_ et _[SteamVR]_ proviennent de SteamVR.
@@ -83,14 +81,6 @@ Le walkman entre en collision avec la cassette. Celle-ci entre dans le walkman, 
 
 Les fonction ZoneManager.GoToX sont appelées par l'évènement onMusicChange de chaque cassette.
 
-**IDEA**: Pour le moment, c'est la cassette qui joue la musique. Un essai a été commencé de déplacer la musique dans la classe walkman. Je propose qu'on laisse la cassette avoir sa musique, et que le walkman récupère le fichier de cette musique pour la jouer.
-
-**IDEA**: Pour le moment, on ne se retéléporte pas dans le même monde car on empêche de jouer la même cassette deux fois de suite. On pourrait plutot vérifier dans les functions ZoneManager que on va dans une temporalité différente.
-
-**IDEA**: Déplacer le code de téléportation dans classe walkman et de laisser en attribut de la cassette, la temporalité de destination. Cela permet de simplifier les états, et d'avoir tout dans le code et pas sur les objets.
-
-**NB**: Le walkman contient le code pour l'easter egg Buttlicker. (3- ???)
-
 **TODO**: Fadeout lorsqu'on utilise une cassette
 
 **TODO?**: Bruit de cassette abîmé pour les mauvaises.
@@ -108,21 +98,17 @@ La fracturation du mur est implémentée dans Fracturable. Il va ajouter une for
 
 Le script tiroir expose une fonction qui permet de récupérer ses enfants pour les déplacer lorsqu'on change d'époque.
 
-**NB**: Je n'arrive pas à trouver où cette fonction est utilisée. (**TODO**)
-
-**TODO**: Il manquerait alors une méthode pour placer des objets dans le tiroir ?
-
 Le script 80s/Drawer_constraint restreint la position du tiroir selon l'axe X jusqu'à une position d'arrêt. Il est uniquement appliqué sur le tiroir des années '80.
 
 **IDEA**: On peut sans doute le généraliser pour appliquer les contraintes sur les autres tiroirs. Une autre option est d'utiliser un joint personnalisé: <https://gamedev.stackexchange.com/questions/129659/how-do-i-configure-a-joint-for-a-sliding-door-in-unity>
 
 #### Rembobinage au crayon
 
-**TODO**: Faire le crayon, le mettre en valeur. L’interaction pour rembobiner une cassette.
+L'interaction marche, **TODO** : trouver un moyen de la mettre plus en valeur, pour que le joueur sache qu'il faut faire ça.
 
 #### Ouverture du coffre
 
-**TODO**: À faire, inspiré du script OuvrirCoffre (qui existe quelque part)
+**TODO**: rajouter l'animation d'ouverture du coffre quand la clé est insérée.
 
 #### Planter la graine
 
@@ -131,9 +117,7 @@ PlanterGraine.
 
 ### Autres choses
 
-Faire le dialogue d'introduction (cf. scénario) ainsi que l'avatar du soi futur. Fait !
-
-**TODO?**: Écran de fin de jeu.
+**TODO?**: Écran de fin de jeu à améliorer.
 
 ---
 
