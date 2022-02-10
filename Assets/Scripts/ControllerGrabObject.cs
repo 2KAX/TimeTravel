@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 // 2 - Ce script gère les contrôles et les interactions que possède l'utilisateur avec les controllers du casque.
 
 public class ControllerGrabObject : MonoBehaviour {
 
     //A reference to the object being tracked. In this case, a controller.
-    public SteamVR_Action_Boolean Movement;
-    public SteamVR_Input_Sources handType;
+    //public SteamVR_Action_Boolean Movement;
+    //public SteamVR_Input_Sources handType;
+    //@todo
 
-    private SteamVR_TrackedObject trackedObj;
+    //private SteamVR_TrackedObject trackedObj;
 
     private Vector3 lastPosition=Vector3.zero;
     private Vector3 velocity=Vector3.zero;
@@ -28,7 +28,8 @@ public class ControllerGrabObject : MonoBehaviour {
     void Awake()
     {
         //reference to the SteamVR_TrackedObject
-        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        //trackedObj = GetComponent<SteamVR_TrackedObject>();
+        //@todo
     }
 
     void Start()
@@ -139,7 +140,9 @@ public class ControllerGrabObject : MonoBehaviour {
         Vector3 angularDisplacement = rotationAxis * angleInDegrees * Mathf.Deg2Rad;
         angularVelocity = angularDisplacement / Time.deltaTime;
         lastRotation = this.gameObject.transform.rotation;
-        
+
+        //@todo
+/*
         //Debug.Log(collidingObject?.name ?? "non");
         // When the player squeezes the trigger and there’s a potential grab target, this grabs it.
         if (Movement.GetStateDown(handType))
@@ -159,6 +162,6 @@ public class ControllerGrabObject : MonoBehaviour {
             {
                 ReleaseObject();
             }
-        }
+        }*/
     }
 }

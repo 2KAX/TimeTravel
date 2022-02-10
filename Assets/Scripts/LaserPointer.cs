@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 public class LaserPointer : MonoBehaviour {
 
+    //@todo
+
     private GameObject trackedObj;
-    public SteamVR_Action_Boolean Movement;
-    public SteamVR_Input_Sources handType;
+   // public SteamVR_Action_Boolean Movement;
+   // public SteamVR_Input_Sources handType;
 
 
     //private SteamVR_Controller.Device Controller
@@ -92,9 +93,11 @@ public class LaserPointer : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //@todo
+
         // If the touchpad is held down…
         //It only detects on the frame it is held, so we use a boolean to remember
-        if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
+       /* if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
         {
             isSelectingPoint = true;
             laser.SetActive(true);
@@ -103,7 +106,7 @@ public class LaserPointer : MonoBehaviour {
         {
             isSelectingPoint = false;
             laser.SetActive(false);
-        }
+        }*/
         if (isSelectingPoint)
         {
             laser.SetActive(true); // we activated the laser if it was desactivated earlier because the laser hitted nothing

@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using Valve.VR;
 
 public class messagemanager : MonoBehaviour
 {
@@ -13,10 +12,11 @@ public class messagemanager : MonoBehaviour
     [TextArea(1, 20)]
     private string allMessage = null;
 
+    //@todo
 
     //A reference to the object being tracked. In this case, a controller.
-    public SteamVR_Action_Boolean Movement;
-    public SteamVR_Input_Sources handType;
+   // public SteamVR_Action_Boolean Movement;
+   // public SteamVR_Input_Sources handType;
 
 
     //3. 　string pour separer les textes
@@ -56,6 +56,7 @@ public class messagemanager : MonoBehaviour
         //SetMessage(allMessage);
         isEndMessage = true;
         transform.GetChild(0).gameObject.SetActive(false);
+
     }
 
     void Update()
@@ -85,14 +86,16 @@ public class messagemanager : MonoBehaviour
             }
             elapsedTime += Time.deltaTime;
 
+            //@todo
+            /*
             //　a modifier 
             //3. si on appuye sur le button de souris gauche, affiche tout d'un coup
-            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/) // doit marcher avec les manettes
+            if (Movement.GetStateDown(handType)*//*Input.GetMouseButtonDown(0)*//*) // doit marcher avec les manettes
             {
                 //　ajout du message restant
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
                 isOneMessage = true;
-            }
+            }*/
             //3.　ici on a affiche un message 
         }
         else
@@ -106,9 +109,10 @@ public class messagemanager : MonoBehaviour
                 clickIcon.enabled = !clickIcon.enabled;
                 elapsedTime = 0f;
             }
+            //@todo
 
-            //　si on clique le button de souris, on traite le message suivant
-            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/)
+            /*//　si on clique le button de souris, on traite le message suivant
+            if (Movement.GetStateDown(handType)*//*Input.GetMouseButtonDown(0)*//*)
             {
                 nowTextNum = 0;
                 messageNum++;
@@ -125,7 +129,7 @@ public class messagemanager : MonoBehaviour
                     transform.GetChild(0).gameObject.SetActive(false);
 
                 }
-            }
+            }*/
         }
     }
 
