@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using UnityEngine.InputSystem;
 
 public class messagemanager : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class messagemanager : MonoBehaviour
     [TextArea(1, 20)]
     private string allMessage = null;
 
-    //@todo
+    //@done
 
     //A reference to the object being tracked. In this case, a controller.
    // public SteamVR_Action_Boolean Movement;
@@ -42,6 +42,9 @@ public class messagemanager : MonoBehaviour
     private bool isOneMessage = false;
     //3.　si tous les messages ont ete affiche
     private bool isEndMessage = false;
+
+    private InputAction activateAction;
+
     public bool IsEndMessage
     {
         get { return this.isEndMessage; }
@@ -57,7 +60,10 @@ public class messagemanager : MonoBehaviour
         isEndMessage = true;
         transform.GetChild(0).gameObject.SetActive(false);
 
+        activateAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().rightHandActions.FindAction("Activate");
     }
+
+
 
     void Update()
     {
@@ -86,16 +92,15 @@ public class messagemanager : MonoBehaviour
             }
             elapsedTime += Time.deltaTime;
 
-            //@todo
-            /*
+            //@done
             //　a modifier 
             //3. si on appuye sur le button de souris gauche, affiche tout d'un coup
-            if (Movement.GetStateDown(handType)*//*Input.GetMouseButtonDown(0)*//*) // doit marcher avec les manettes
+            if (activateAction.triggered/*Input.GetMouseButtonDown(0)*/) // doit marcher avec les manettes
             {
                 //　ajout du message restant
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
                 isOneMessage = true;
-            }*/
+            }
             //3.　ici on a affiche un message 
         }
         else
@@ -109,10 +114,11 @@ public class messagemanager : MonoBehaviour
                 clickIcon.enabled = !clickIcon.enabled;
                 elapsedTime = 0f;
             }
-            //@todo
 
-            /*//　si on clique le button de souris, on traite le message suivant
-            if (Movement.GetStateDown(handType)*//*Input.GetMouseButtonDown(0)*//*)
+            //@done
+
+            //　si on clique le button de souris, on traite le message suivant
+            if (activateAction.triggered/*Input.GetMouseButtonDown(0)*/)
             {
                 nowTextNum = 0;
                 messageNum++;
@@ -129,7 +135,7 @@ public class messagemanager : MonoBehaviour
                     transform.GetChild(0).gameObject.SetActive(false);
 
                 }
-            }*/
+            }
         }
     }
 

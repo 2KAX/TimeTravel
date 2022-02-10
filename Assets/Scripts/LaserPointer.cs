@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LaserPointer : MonoBehaviour {
 
-    //@todo
+    //@done
 
     private GameObject trackedObj;
    // public SteamVR_Action_Boolean Movement;
@@ -44,6 +45,9 @@ public class LaserPointer : MonoBehaviour {
     private bool isSelectingPoint;
     // Use this for initialization
 
+    private InputAction teleportSelectAction;
+
+
     private void Start()
     {
         // Spawn a new laser and save a reference to it in laser.
@@ -54,6 +58,9 @@ public class LaserPointer : MonoBehaviour {
         reticle = Instantiate(teleportReticlePrefab);
         // Store the reticle’s transform component.
         teleportReticleTransform = reticle.transform;
+
+        teleportSelectAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().rightHandActions.FindAction("Teleport Select");
+
     }
 
     void Awake()
@@ -93,21 +100,22 @@ public class LaserPointer : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //@todo
+        //@done
 
         // If the touchpad is held down…
         //It only detects on the frame it is held, so we use a boolean to remember
-       /* if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
+        if (teleportSelectAction.triggered)
         {
             isSelectingPoint = true;
             laser.SetActive(true);
         }
-        if (SteamVR_Actions._default.Teleport.GetStateUp(handType)) // Hide the laser when the player released the touchpad.
+        if (teleportSelectAction.phase != InputActionPhase.Performed && isSelectingPoint) // Hide the laser when the player released the touchpad.
         {
             isSelectingPoint = false;
             laser.SetActive(false);
-        }*/
+        }
         if (isSelectingPoint)
+        
         {
             laser.SetActive(true); // we activated the laser if it was desactivated earlier because the laser hitted nothing
             RaycastHit hit;

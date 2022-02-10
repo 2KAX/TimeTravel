@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 // 2 - Ce script gère les contrôles et les interactions que possède l'utilisateur avec les controllers du casque.
 
@@ -9,7 +10,7 @@ public class ControllerGrabObject : MonoBehaviour {
     //A reference to the object being tracked. In this case, a controller.
     //public SteamVR_Action_Boolean Movement;
     //public SteamVR_Input_Sources handType;
-    //@todo
+    //@done
 
     //private SteamVR_TrackedObject trackedObj;
 
@@ -18,6 +19,9 @@ public class ControllerGrabObject : MonoBehaviour {
 
     private Quaternion lastRotation = Quaternion.identity;
     private Vector3 angularVelocity = Vector3.zero;
+
+    private InputAction activateAction;
+
 
     //A device property to provide easy access to the controller. It uses the tracked object’s index to return the controller’s input.
     // private SteamVR_Controller.Device Controller
@@ -39,6 +43,24 @@ public class ControllerGrabObject : MonoBehaviour {
         collider.isTrigger = true;
         Rigidbody rbody = this.gameObject.AddComponent<Rigidbody>();
         rbody.isKinematic = true;
+        
+        activateAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().rightHandActions.FindAction("Activate");
+
+        //@done
+
+        activateAction.performed += _ =>
+        {
+            if (collidingObject)
+                GrabObject();
+            else
+                Debug.Log("Got input, but no colliding object");
+        };
+
+        activateAction.canceled += _ =>
+        {
+            if (objectInHand)
+                ReleaseObject();
+        };
 
     }
 
@@ -141,27 +163,5 @@ public class ControllerGrabObject : MonoBehaviour {
         angularVelocity = angularDisplacement / Time.deltaTime;
         lastRotation = this.gameObject.transform.rotation;
 
-        //@todo
-/*
-        //Debug.Log(collidingObject?.name ?? "non");
-        // When the player squeezes the trigger and there’s a potential grab target, this grabs it.
-        if (Movement.GetStateDown(handType))
-        {
-            if (collidingObject)
-            {
-                GrabObject();
-            } else {
-                Debug.Log("Got input, but no colliding object");
-            }
-        }
-
-        // If the player releases the trigger and there’s an object attached to the controller, this releases it.
-        if (Movement.GetStateUp(handType))
-        {
-            if (objectInHand)
-            {
-                ReleaseObject();
-            }
-        }*/
     }
 }
