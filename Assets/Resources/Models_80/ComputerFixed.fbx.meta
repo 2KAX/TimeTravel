@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 90c169c8ea8af6142a4ecb58f15b09da
+guid: 991e3d140f9ac4048b4080f115a59c39
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable:
-  - first:
-      74: -2399263704221825563
-    second: Chest|ArmatureAction
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1

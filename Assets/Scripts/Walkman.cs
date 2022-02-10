@@ -38,8 +38,8 @@ public class Walkman : MonoBehaviour
         if (currentTape == null)
         {
 
-            if(collision.gameObject.tag == "K7future" || collision.gameObject.tag == "K7farWest" || collision.gameObject.tag == "K7rock1989queen_2050")
-            {
+            //if(collision.gameObject.tag == "K7future" || collision.gameObject.tag == "K7farWest" || collision.gameObject.tag == "K7rock1989queen_2050")
+            //{
                 currentTape = collision.gameObject;
 
                 currentTape.GetComponent<Rigidbody>().isKinematic = true;
@@ -51,7 +51,7 @@ public class Walkman : MonoBehaviour
                 //  On lance la fonction (Coroutine) lié à l'action de la cassette dans le Walkman
                 Debug.Log(currentTape.name);
                 StartCoroutine("PlaySongCoroutine");
-            }
+            //}
         }
     }
     
@@ -64,10 +64,10 @@ public class Walkman : MonoBehaviour
         {
 
             case "K7rock1989queen_2050":
-     
-                var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
-                 asource = currentTape.GetComponent<AudioSource>();
-                 asource.clip = musique;
+
+                AudioClip musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
+                asource = currentTape.GetComponent<AudioSource>();
+                asource.clip = musique;
                 if (!zoneManager.Used80) zoneManager.Used80 = true;
                 break;
 
@@ -84,7 +84,11 @@ public class Walkman : MonoBehaviour
                 asource.clip = musiquewestern;
                 if (!zoneManager.Usedwest) zoneManager.Usedwest = true;
                 break;
-      
+            default:
+                AudioClip musiquedefault = (AudioClip)Resources.Load<AudioClip>("Audio/randomcassette");
+                asource = currentTape.GetComponent<AudioSource>();
+                asource.clip = musiquedefault;
+                break;
 
         }
         asource.Play();
