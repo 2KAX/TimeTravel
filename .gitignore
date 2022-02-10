@@ -6,7 +6,6 @@
 Assets/AssetStoreTools*
 Logs/
 Packages/
-docs/screenshots/
 
 *.vrmanifest
 *.DS_Store
@@ -40,7 +39,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-# autre
-*.pdf
-*.mp4
