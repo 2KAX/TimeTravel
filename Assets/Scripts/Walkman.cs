@@ -84,10 +84,12 @@ public class Walkman : MonoBehaviour
                 asource.clip = musiquewestern;
                 if (!zoneManager.Usedwest) zoneManager.Usedwest = true;
                 break;
-            default:
+            case "K7Vide":
                 AudioClip musiquedefault = (AudioClip)Resources.Load<AudioClip>("Audio/randomcassette");
                 asource = currentTape.GetComponent<AudioSource>();
                 asource.clip = musiquedefault;
+                break;
+            default:
                 break;
 
         }
