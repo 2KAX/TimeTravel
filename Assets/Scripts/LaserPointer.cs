@@ -48,7 +48,7 @@ public class LaserPointer : MonoBehaviour {
     private InputAction teleportSelectAction;
 
 
-    private void Start()
+    void Start()
     {
         // Spawn a new laser and save a reference to it in laser.
         laser = Instantiate(laserPrefab);
@@ -59,8 +59,7 @@ public class LaserPointer : MonoBehaviour {
         // Store the reticle’s transform component.
         teleportReticleTransform = reticle.transform;
 
-        teleportSelectAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().rightHandActions.FindAction("Teleport Select");
-
+        teleportSelectAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().leftHandActions.FindAction("Teleport Select");
     }
 
     void Awake()
