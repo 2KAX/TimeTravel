@@ -7,7 +7,7 @@ public class introtrigger : WhenGrabbed
 
     private static bool isFirst = true;
 
-    public managedissolve dis;
+    public Spawn spawn;
 
 
     public override void Grab()
@@ -15,8 +15,7 @@ public class introtrigger : WhenGrabbed
         if (isFirst)
         {
             isFirst = false;
-            managedissolve.isfirsttouch = true;
-            dis.createeffect();
+            spawn.Begin();
         }
     }
     public override void Released()
