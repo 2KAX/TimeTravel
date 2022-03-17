@@ -5,17 +5,15 @@ using UnityEngine;
 public class introtrigger : WhenGrabbed
 {
 
-    private static bool isFirst = true;
-
-    public Spawn spawn;
-
+    bool first = true;
+    public Appear appear;
 
     public override void Grab()
     {
-        if (isFirst)
+        if (first)
         {
-            isFirst = false;
-            spawn.Begin();
+            first = false;
+            appear.Spawn();
         }
     }
     public override void Released()
