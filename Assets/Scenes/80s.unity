@@ -5737,7 +5737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshes: []
-  duration: 0
+  duration: 1
 --- !u!1 &2142232800946889333
 GameObject:
   m_ObjectHideFlags: 0

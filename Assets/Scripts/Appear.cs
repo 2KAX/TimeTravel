@@ -5,7 +5,7 @@ using UnityEngine;
 public class Appear : MonoBehaviour
 {
     [SerializeField] Renderer[] meshes;
-    [SerializeField] float duration;
+    [SerializeField] [Range(0, 10)] float duration;
     
     void Start()
     {
@@ -13,14 +13,14 @@ public class Appear : MonoBehaviour
             meshes = GetComponentsInChildren<Renderer>();
     }
 
-    public void Spawn()
+    public void StartAppearing()
     {
         StartCoroutine(Appearing());
     }
 
     IEnumerator Appearing()
     {
-        for (float alpha = 1f; alpha >= 0; alpha -= duration / Time.deltaTime)
+        for (float alpha = 0; alpha < 1; alpha += duration / Time.deltaTime)
         {
             foreach (Renderer mesh in meshes)
             {

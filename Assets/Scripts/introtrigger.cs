@@ -1,23 +1,19 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class introtrigger : WhenGrabbed
+public class IntroTrigger : WhenGrabbed
 {
-
     bool first = true;
-    public Appear appear;
+    [SerializeField] Appear appear;
 
     public override void Grab()
     {
         if (first)
         {
             first = false;
-            appear.Spawn();
+            appear.StartAppearing();
         }
     }
-    public override void Released()
-    {
-
-    }
+    public override void Released() {}
 }
