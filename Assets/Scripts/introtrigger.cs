@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroTrigger : WhenGrabbed
+public class introtrigger : WhenGrabbed
 {
     bool first = true;
     [SerializeField] Appear appear;

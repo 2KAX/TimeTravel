@@ -20,14 +20,10 @@ public class Appear : MonoBehaviour
 
     IEnumerator Appearing()
     {
-        for (float alpha = 0; alpha < 1; alpha += duration / Time.deltaTime)
+        for (float alpha = 0; alpha < 1; alpha += Time.deltaTime / duration)
         {
             foreach (Renderer mesh in meshes)
-            {
-                Color color = mesh.material.color;
-                color.a = alpha;
-                mesh.material.color = color;
-            }
+                mesh.material.SetFloat("Threshold", alpha);
             yield return null;
         }
     }
