@@ -5,8 +5,6 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 Logs/
-Packages/
-UserSettings/
 
 *.vrmanifest
 *.DS_Store
