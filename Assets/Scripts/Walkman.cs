@@ -63,7 +63,7 @@ public class Walkman : MonoBehaviour
         switch (currentTape.tag) // 2 - Cassette Actuelle  
         {
 
-            case "K7rock1989queen_2050":
+            case "K7present":
 
                 AudioClip musique = (AudioClip)Resources.Load<AudioClip>("Audio/Queen TheMiracle");
                 asource = currentTape.GetComponent<AudioSource>();
@@ -84,6 +84,12 @@ public class Walkman : MonoBehaviour
                 asource.clip = musiquewestern;
                 if (!zoneManager.Usedwest) zoneManager.Usedwest = true;
                 break;
+
+            case "K7present_vide":
+                AudioClip musiquePasRembobine = (AudioClip)Resources.Load<AudioClip>("Audio/neeuQ");
+                asource = currentTape.GetComponent<AudioSource>();
+                asource.clip = musiquePasRembobine;
+                break;
             case "K7Vide":
                 AudioClip musiquedefault = (AudioClip)Resources.Load<AudioClip>("Audio/randomcassette");
                 asource = currentTape.GetComponent<AudioSource>();
@@ -95,7 +101,7 @@ public class Walkman : MonoBehaviour
         }
         asource.Play();
         
-        yield return new WaitForSeconds(5); 
+        yield return new WaitForSeconds(7); 
 
         asource.Stop();
         Debug.Log("Song ended !");
@@ -128,7 +134,7 @@ public class Walkman : MonoBehaviour
         switch (currentTape.tag)
         {
  
-            case "K7rock1989queen_2050":
+            case "K7present":
                 zoneManager.GoToA();
                 break;
             case "K7future":

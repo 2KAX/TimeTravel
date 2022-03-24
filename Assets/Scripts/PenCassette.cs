@@ -9,7 +9,6 @@ public class PenCassette : MonoBehaviour
     private AudioSource Rembodio;//Audio du bruit de rembobinage
     void Start()
     {
-        transform.parent.tag = "Untagged";
     }
     void OnTriggerEnter(Collider other)
     {
@@ -18,9 +17,9 @@ public class PenCassette : MonoBehaviour
             if (!HasBeenPenned)
             {
                 //On active la cassette en changeant son Tag
-                transform.parent.tag = "K7rock1989queen_2050";
-                var musique = (AudioClip)Resources.Load<AudioClip>("Audio/Rembobinage");//On joue le bruit de rembobinage
-                Rembodio = transform.parent.GetComponent<AudioSource>();
+                transform.tag = "K7present";
+                AudioClip musique = Resources.Load<AudioClip>("Audio/Rembobinage");//On joue le bruit de rembobinage
+                Rembodio = transform.GetComponent<AudioSource>();
                 Rembodio.clip = musique;
                 Rembodio.Play();
             }

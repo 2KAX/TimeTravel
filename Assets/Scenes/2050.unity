@@ -8025,6 +8025,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: K7rock1989queen_2050
       objectReference: {fileID: 0}
+    - target: {fileID: 8633351198339898431, guid: 88e3cae245880de418d63005bfabfb0e,
+        type: 3}
+      propertyPath: m_TagString
+      value: K7present_vide
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88e3cae245880de418d63005bfabfb0e, type: 3}
 --- !u!1 &2087114383 stripped

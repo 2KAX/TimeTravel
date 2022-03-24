@@ -12,6 +12,8 @@ TagManager:
   - K7farWest
   - Key
   - K7Vide
+  - K7present_vide
+  - K7present
   layers:
   - Default
   - TransparentFX

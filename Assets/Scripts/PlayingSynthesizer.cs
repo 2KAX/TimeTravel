@@ -54,7 +54,7 @@ public class PlayingSynthesizer : MonoBehaviour
         // 2 - S'il y a collision entre le synthé et les mains du joueur.
         if (other.CompareTag("Player"))
         {
-            if (asr.clip.length <= 2f && FirstNotePlayed)
+            if (asr.clip == FirstNote && FirstNotePlayed)
             {
                 asr.clip = Melody;
                 timerMusic = 0;
