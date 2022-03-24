@@ -126,7 +126,7 @@ public class Walkman : MonoBehaviour
             Tir.RemoveChild();// On enlève les enfants de certains GameObject contenu dans la liste pour éviter de leur supprimer leur parent
             foreach (GameObject go in Tir.GoCont)//On parcourt tous les objets, on set leurs parents à nul pour utiliser le DontDestroyOnLoad
             {
-                go.transform.parent = null;// !!! ICI  !!! ça peut poser problème pour la TP de la cassette 80's qui dispose de trigger sur elle par exemple...
+                go.transform.parent = null;
                 DontDestroyOnLoad(go);
             }
         }
