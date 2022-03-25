@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
-using Valve.VR;
+using UnityEngine.InputSystem;
 
 public class messagemanager : MonoBehaviour
 {
@@ -11,17 +10,15 @@ public class messagemanager : MonoBehaviour
     //3. message qui sera affiche
     [SerializeField]
     [TextArea(1, 20)]
-    private string allMessage = null;
+    private string allMessage;
 
+    //@done
 
     //A reference to the object being tracked. In this case, a controller.
-    public SteamVR_Action_Boolean Movement;
-    public SteamVR_Input_Sources handType;
+   // public SteamVR_Action_Boolean Movement;
+   // public SteamVR_Input_Sources handType;
 
 
-    //3. 　string pour separer les textes
-    [SerializeField]
-    private string splitString = "<>";
     //3.　 tableau des messages separes
     private string[] splitMessage;
     //　indice pour les messages separes 
@@ -42,6 +39,9 @@ public class messagemanager : MonoBehaviour
     private bool isOneMessage = false;
     //3.　si tous les messages ont ete affiche
     private bool isEndMessage = false;
+
+    private InputAction activateAction;
+
     public bool IsEndMessage
     {
         get { return this.isEndMessage; }
@@ -56,15 +56,17 @@ public class messagemanager : MonoBehaviour
         //SetMessage(allMessage);
         isEndMessage = true;
         transform.GetChild(0).gameObject.SetActive(false);
+
+        activateAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().rightHandActions.FindAction("Activate");
     }
+
+
 
     void Update()
     {
         //　si le message est fini. Si'l n'y a plus de message, on n'affiche desormais plus rien
         if (isEndMessage || allMessage == null)
-        {
             return;
-        }
 
         // si le message d'une fois est affiche　
         if (!isOneMessage)
@@ -79,15 +81,14 @@ public class messagemanager : MonoBehaviour
 
                 // si le message a ete tout affiche ou non
                 if (nowTextNum >= splitMessage[messageNum].Length)
-                {
                     isOneMessage = true;
-                }
             }
             elapsedTime += Time.deltaTime;
 
+            //@done
             //　a modifier 
             //3. si on appuye sur le button de souris gauche, affiche tout d'un coup
-            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/) // doit marcher avec les manettes
+            if (activateAction.triggered/*Input.GetMouseButtonDown(0)*/) // doit marcher avec les manettes
             {
                 //　ajout du message restant
                 messageText.text += splitMessage[messageNum].Substring(nowTextNum);
@@ -107,8 +108,10 @@ public class messagemanager : MonoBehaviour
                 elapsedTime = 0f;
             }
 
+            //@done
+
             //　si on clique le button de souris, on traite le message suivant
-            if (Movement.GetStateDown(handType)/*Input.GetMouseButtonDown(0)*/)
+            if (activateAction.triggered/*Input.GetMouseButtonDown(0)*/)
             {
                 nowTextNum = 0;
                 messageNum++;
@@ -130,22 +133,15 @@ public class messagemanager : MonoBehaviour
     }
 
 
-    //3.　set un nouveau message
-    void SetMessage(string message)
+    public void Display()
     {
-        this.allMessage = message;
         //　separer une message en plusieurs 
-        splitMessage = Regex.Split(allMessage, @"\s*" + splitString + @"\s*", RegexOptions.IgnorePatternWhitespace);
+        splitMessage = Regex.Split(allMessage, "\n");
         nowTextNum = 0;
         messageNum = 0;
         messageText.text = "";
         isOneMessage = false;
         isEndMessage = false;
-    }
-    //3.　set un nouceau message a partir d'autre script et l'activate
-    public void SetMessagePanel(string message)
-    {
-        SetMessage(message);
         transform.GetChild(0).gameObject.SetActive(true);
     }
 }

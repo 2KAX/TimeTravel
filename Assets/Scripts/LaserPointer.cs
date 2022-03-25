@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
+using UnityEngine.InputSystem;
 
 public class LaserPointer : MonoBehaviour {
 
+    //@done
+
     private GameObject trackedObj;
-    public SteamVR_Action_Boolean Movement;
-    public SteamVR_Input_Sources handType;
+   // public SteamVR_Action_Boolean Movement;
+   // public SteamVR_Input_Sources handType;
 
 
     //private SteamVR_Controller.Device Controller
@@ -43,7 +45,10 @@ public class LaserPointer : MonoBehaviour {
     private bool isSelectingPoint;
     // Use this for initialization
 
-    private void Start()
+    private InputAction teleportSelectAction;
+
+
+    void Start()
     {
         // Spawn a new laser and save a reference to it in laser.
         laser = Instantiate(laserPrefab);
@@ -53,6 +58,8 @@ public class LaserPointer : MonoBehaviour {
         reticle = Instantiate(teleportReticlePrefab);
         // Store the reticle’s transform component.
         teleportReticleTransform = reticle.transform;
+
+        teleportSelectAction = GameObject.Find("XR Rig").GetComponent<XRInputLoader>().leftHandActions.FindAction("Teleport Select");
     }
 
     void Awake()
@@ -92,19 +99,22 @@ public class LaserPointer : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        //@done
+
         // If the touchpad is held down…
         //It only detects on the frame it is held, so we use a boolean to remember
-        if (SteamVR_Actions._default.Teleport.GetStateDown(handType))
+        if (teleportSelectAction.triggered)
         {
             isSelectingPoint = true;
             laser.SetActive(true);
         }
-        if (SteamVR_Actions._default.Teleport.GetStateUp(handType)) // Hide the laser when the player released the touchpad.
+        if (teleportSelectAction.phase != InputActionPhase.Performed && isSelectingPoint) // Hide the laser when the player released the touchpad.
         {
             isSelectingPoint = false;
             laser.SetActive(false);
         }
         if (isSelectingPoint)
+        
         {
             laser.SetActive(true); // we activated the laser if it was desactivated earlier because the laser hitted nothing
             RaycastHit hit;

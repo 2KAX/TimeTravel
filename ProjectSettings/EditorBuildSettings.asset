@@ -17,4 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Western.unity
     guid: 38fa55d921d30e54296b2b3363e7026d
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0a4bf681221912341987d329ecf5cb8c,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: ceb723438a0200e4ea0cad5a779c8a30,
+      type: 2}

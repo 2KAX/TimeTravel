@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
 
 public class TurnCamera : MonoBehaviour
 {
-    public SteamVR_Input_Sources handType;
+    //public SteamVR_Input_Sources handType;
 
     public float turnSensitivity = 10.0f;
 
@@ -23,7 +22,9 @@ public class TurnCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SteamVR_Actions._default.SnapTurnLeft.GetStateDown(handType)&& !hasTurned)
+        //@todo
+
+        /*if (SteamVR_Actions._default.SnapTurnLeft.GetStateDown(handType)&& !hasTurned)
         {
             Debug.Log("Turned left !");
             parent.rotation *= Quaternion.AngleAxis(turnSensitivity, Vector3.up);
@@ -42,6 +43,6 @@ public class TurnCamera : MonoBehaviour
         else if (SteamVR_Actions._default.SnapTurnRight.GetStateUp(handType))
         {
             hasTurned = false;
-        }
+        }*/
     }
 }

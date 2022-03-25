@@ -18,3 +18,4 @@ Ajouter le projet dans Unity Hub et lancez-le. Nos scripts sont dans `Scripts`, 
 ## À propos
 
 Ce jeu est réalisé dans le cadre de l'option RV de Centrale Nantes. Il a été initialement conçu en 2019.
+Il fonctionne actuellement sur la version 2019.4.20 de Unity mais une montée en version le portera à la version 2021.1.13f1
