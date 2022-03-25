@@ -57,23 +57,24 @@ public class tiroir : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)//Lorsqu'un objet entre dans le tiroir on l'ajoute à la liste des objets contenus dans le tiroir
+
+    /*private void OnTriggerEnter(Collider other)//Lorsqu'un objet entre dans le tiroir on l'ajoute à la liste des objets contenus dans le tiroir
     {
         if (other.tag != "Player" && !GoContained.Contains(other.gameObject))//On évite de mettre les mains dans le tiroir et les objets qui y sont déjà
         {
             GoContained.Add(other.gameObject);
             Debug.Log(other.name);
         }
-    }
+    }*/
 
-    private void OnTriggerExit(Collider other)//Lorsqu'un objet sort du tiroir, il est retiré de la liste s'il est dedans.
+    /*private void OnTriggerExit(Collider other)//Lorsqu'un objet sort du tiroir, il est retiré de la liste s'il est dedans.
     {
         if (GoContained.Contains(other.gameObject))
         {
             GoContained.Remove(other.gameObject);
 
         }
-    }
+    }*/
 
     public void RemoveChild()// Méthode récursive pour enlever les enfant d'objets qui triggerait le trigger du tiroir
     {

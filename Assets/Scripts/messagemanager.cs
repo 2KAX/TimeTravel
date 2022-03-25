@@ -10,7 +10,7 @@ public class messagemanager : MonoBehaviour
     //3. message qui sera affiche
     [SerializeField]
     [TextArea(1, 20)]
-    private string allMessage = null;
+    private string allMessage;
 
     //@done
 
@@ -19,9 +19,6 @@ public class messagemanager : MonoBehaviour
    // public SteamVR_Input_Sources handType;
 
 
-    //3. 　string pour separer les textes
-    [SerializeField]
-    private string splitString = "<>";
     //3.　 tableau des messages separes
     private string[] splitMessage;
     //　indice pour les messages separes 
@@ -69,9 +66,7 @@ public class messagemanager : MonoBehaviour
     {
         //　si le message est fini. Si'l n'y a plus de message, on n'affiche desormais plus rien
         if (isEndMessage || allMessage == null)
-        {
             return;
-        }
 
         // si le message d'une fois est affiche　
         if (!isOneMessage)
@@ -86,9 +81,7 @@ public class messagemanager : MonoBehaviour
 
                 // si le message a ete tout affiche ou non
                 if (nowTextNum >= splitMessage[messageNum].Length)
-                {
                     isOneMessage = true;
-                }
             }
             elapsedTime += Time.deltaTime;
 
@@ -140,22 +133,15 @@ public class messagemanager : MonoBehaviour
     }
 
 
-    //3.　set un nouveau message
-    void SetMessage(string message)
+    public void Display()
     {
-        this.allMessage = message;
         //　separer une message en plusieurs 
-        splitMessage = Regex.Split(allMessage, @"\s*" + splitString + @"\s*", RegexOptions.IgnorePatternWhitespace);
+        splitMessage = Regex.Split(allMessage, "\n");
         nowTextNum = 0;
         messageNum = 0;
         messageText.text = "";
         isOneMessage = false;
         isEndMessage = false;
-    }
-    //3.　set un nouceau message a partir d'autre script et l'activate
-    public void SetMessagePanel(string message)
-    {
-        SetMessage(message);
         transform.GetChild(0).gameObject.SetActive(true);
     }
 }

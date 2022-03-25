@@ -86,7 +86,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Noise_Scale: 20
+    - ContourSize: 0.02
+    - Dissolve: 1
+    - NoiseScale: 20
+    - Noise_Scale: 1000
     - Threshold: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -116,6 +119,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Contour: {r: 1, g: 0.01, b: 0.98, a: 0}
+    - ContourColor: {r: 0, g: 4, b: 4, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
