@@ -341,19 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b0ca37c2fbcd84fa5fbfa7584175cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &52337476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149206197777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8ec8a33ec9d4c042acf043f2a42fe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appear: {fileID: 2082486056410170116}
 --- !u!65 &52337477
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -835,10 +822,10 @@ RectTransform:
   m_Father: {fileID: 481413637}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: -100, y: -1200}
+  m_SizeDelta: {x: 5000, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230258968
 MonoBehaviour:
@@ -1328,8 +1315,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738b75279d363d54985c220cd09a9863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allMessage: Bla bla bla
-  splitString: <>
+  allMessage: "Bonjour \xE0 toi, moi du pass\xE9 ! J\u2019ai toujours r\xEAv\xE9
+    de dire \xE7a...\nSache que mon corps a \xE9t\xE9 victime de radiations, et non
+    pas d\u2019une mod\xE9lisation lowpoly hasardeuse.\nVois-tu, vous n\u2019avez
+    pas \xE9t\xE9 capables de nous sauver du r\xE9chauffement climatique et de la
+    pollution.\nTu peux changer ton funeste destin en ramenant les arbres dans notre
+    \xE9poque.\nPour ce faire, n'oublie pas Boris, ton fid\xE8le walkman intertemporel.\nLa
+    cassette sur la table t\u2019am\xE8nera \xE0 notre \xE9poque pour constater les
+    d\xE9g\xE2ts.\nNous comptons sur toi, euh... sur moi !"
   textSpeed: 0.05
   clickFlashTime: 0.2
 --- !u!114 &481413634
@@ -3765,7 +3758,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546422774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 230258967}
@@ -3773,7 +3766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: -13}
+  m_AnchoredPosition: {x: 300, y: -3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546422776
@@ -4027,9 +4020,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 500, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 200, y: 0}
+  m_SizeDelta: {x: 550, y: 120}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1605228097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4052,18 +4045,19 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "Vois-tu, vous n\u2019avez pas \xE9t\xE9 capables de nous sauver du r\xE9chauffement
+    climatique et de la pollution."
 --- !u!222 &1605228098
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5374,7 +5368,6 @@ GameObject:
   - component: {fileID: 52337477}
   - component: {fileID: 52337474}
   - component: {fileID: 52337475}
-  - component: {fileID: 52337476}
   m_Layer: 0
   m_Name: walkman
   m_TagString: Untagged
@@ -5733,11 +5726,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2082486056410170115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40a3e7d5185f04e48ae0c2374ec4a302, type: 3}
+  m_Script: {fileID: 11500000, guid: 028f83201c3555f428b24e08ff37dc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startDelay: 2
+  message: {fileID: 481413633}
   meshes: []
-  duration: 1
+  dissolveDuration: 1
 --- !u!1 &2142232800946889333
 GameObject:
   m_ObjectHideFlags: 0
